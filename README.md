@@ -14,4 +14,4 @@ Se vuoi installare la tombola sul tuo server, devi:
 3.  Eseguire lo script mysql ``mysql/initial_db.sql`` nel tuo database.
 
 
-![Donate](https://img.shields.io/badge/donate-paypal-blue.svg)
+[![Donate](https://img.shields.io/badge/donate-paypal-blue.svg)](https://www.paypal.com/paypalme/VincenzoPadula)
