@@ -2,7 +2,7 @@
 
 Il classico gioco natalizio online
 
-[Gioca sul mio server](https://vincenzopadula.altervista.org/tombola/)
+[Gioca sul mio server](https://vincenzopadula.altervista.org/tombola/v1.0/)
 
 ![Homepage](screenshots/homepage.png)
 
