@@ -13,5 +13,8 @@ Se vuoi installare la tombola sul tuo server, devi:
 2.  Nel file ``connect.php`` modificare le credenziali con quelle del tuo database;
 3.  Aprire il sito alla pagina ``install.php``.
 
+## Database
+
+![Modello E/R](mysql/modello_er.png)
 
 [![Donate](https://img.shields.io/badge/donate-paypal-blue.svg)](https://www.paypal.com/paypalme/VincenzoPadula)
