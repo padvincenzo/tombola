@@ -1,0 +1,14 @@
+<Files "page_header.php">
+  Order Allow,Deny
+  Deny from all
+</Files>
+
+<Files "page_footer.php">
+  Order Allow,Deny
+  Deny from all
+</Files>
+
+<Files "connect.php">
+  Order Allow,Deny
+  Deny from all
+</Files>
