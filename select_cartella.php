@@ -130,7 +130,7 @@ if(mysqli_num_rows($query) == 1) {
 }
 ?>
 
-<form action='select_cartella.php' method='post'>
+<form action='select_cartella.php' method='post' style="display:inline-block;">
   <input type='hidden' name='cartella' value='<?php echo $cartella; ?>'>
   <button type='submit'>Scegli</button>
 </form>
