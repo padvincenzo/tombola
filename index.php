@@ -26,7 +26,7 @@ include("page_header.php");
 <img id="logo" src="img/logo.svg">
 <br>
 
-<input id='pin' type='text' maxlength='4' autocomplete="off" placeholder="Game PIN">
+<input id='pin' type='text' maxlength='5' autocomplete="off" placeholder="Game PIN">
 <p id="w-help"><sup>*</sup>Chi crea la partita ha il Game PIN</p>
 <button onclick="checkPin();">Gioca!</button>
 <button onclick='nuova_partita();'>Crea partita</button>

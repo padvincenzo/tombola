@@ -43,7 +43,6 @@ ob_start( );
 <body>
 
   <div id="box_b" style="display:none">
-    <br><br><br><br>
     <div id="box">
       <div id="messaggio"></div>
       <br><br>

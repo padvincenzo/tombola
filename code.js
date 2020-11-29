@@ -64,7 +64,7 @@ function doPost(pagina, id1 = null, id2 = null) {
 }
 
 function checkPin() {
-  var regex = /^[0-9]{4}$/
+  var regex = /^[0-9]{5}$/
   if(regex.test($("#pin").val()))
     doPost("client_login.php", $("#pin").val())
   else
@@ -131,7 +131,7 @@ function estrai_numero() {
 
         $("#termina").off('click').on('click', nuova_partita)
         $("#termina").html("Nuova partita")
-        $("#estrazione").off('click').on('click', function () { window.location.href = "https://vincenzopadula.altervista.org/tombola/server_stop.php"; })
+        $("#estrazione").off('click').on('click', function () { window.location.href = "server_stop.php"; })
         $("#estrazione").html("Home")
 
         if(obj.vincite.user[0] == "Tombolone") obj.vincite.user[0] = "Il tombolone"

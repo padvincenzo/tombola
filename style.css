@@ -70,8 +70,14 @@ body, html {
   border-radius: 17px;
   font-size: 36px;
   padding: 5vh 5vw 1vh 5vw;
+  margin-top: 20vh;
   display: inline-block;
   z-index: 3;
+}
+
+#messaggio {
+  max-height: 40vh;
+  overflow-y: auto;
 }
 
 a           { color: #7f3618; text-decoration: none; }
@@ -274,6 +280,7 @@ footer {
   width: 100%;
   font-size: 3vw;
   line-height: 6vw;
+  margin-top: 50px;
   background-color: rgba(0,0,0,0.1);
 }
 

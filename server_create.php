@@ -29,12 +29,25 @@ if(isset($idserver)) {
 mysqli_query($dbh, "update ".PREFIX."server set offlimits = 1 where datediff(NOW(), data) > 2;");
 
 // Genero il PIN
-$query = mysqli_query($dbh, "select c.codice from ".PREFIX."codice c left join ".PREFIX."server s on s.pin = c.codice where s.pin is null or s.offlimits is not null");
+$query = "select lpad(e*10000+d*1000+c*100+b*10+a,5,\"0\") n from
+        (select 0 a union all select 1 union all select 2 union all select 3 union all select 4 union all select 5 union all select 6 union all select 7 union all select 8 union all select 9) t1,
+        (select 0 b union all select 1 union all select 2 union all select 3 union all select 4 union all select 5 union all select 6 union all select 7 union all select 8 union all select 9) t2,
+        (select 0 c union all select 1 union all select 2 union all select 3 union all select 4 union all select 5 union all select 6 union all select 7 union all select 8 union all select 9) t3,
+        (select 0 d union all select 1 union all select 2 union all select 3 union all select 4 union all select 5 union all select 6 union all select 7 union all select 8 union all select 9) t4,
+        (select 0 e union all select 1 union all select 2 union all select 3 union all select 4 union all select 5 union all select 6 union all select 7 union all select 8 union all select 9) t5
+        where lpad(e*10000+d*1000+c*100+b*10+a,5,\"0\") not in (select pin from ".PREFIX."server where offlimits is null)
+        order by 1";
 
-$n = mysqli_num_rows($query);
+$result = mysqli_query($dbh, $query);
+
+$n = mysqli_num_rows($result);
+
+if($n == 0)
+  die("mm");
+
 $codici = array();
-while($cicle = mysqli_fetch_array($query)) {
-  $codici[] = $cicle["codice"];
+while($cicle = mysqli_fetch_array($result)) {
+  $codici[] = $cicle["n"];
 }
 
 $pin = $codici[rand(0, $n)];
