@@ -1,7 +1,7 @@
 # Tombola
 Il classico gioco natalizio online.
 
-[Gioca sul mio server](https://vincenzopadula.altervista.org/tombola/v1.1/)
+[Gioca sul mio server](https://vincenzopadula.altervista.org/tombola/v1.2/)
 
 ![Homepage](screenshots/homepage.png)
 
