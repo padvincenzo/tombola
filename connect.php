@@ -21,10 +21,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 session_start();
 
+// Credenziali database
 $host = 'localhost';
 $user = 'vincenzopadula';
 $database = 'my_vincenzopadula';
 $psw = '';
+
+// Password di amministratore
+define("ADMIN_PW", "abcd");
 
 define("PREFIX", "tombola_k_");
 
@@ -67,5 +71,26 @@ function checkOnlyNumbers($number = null) {
 function is_a_username($username = null) {
   if($username == null || $username == "") return false;
   return preg_match("/^[a-zA-Z0-9_.-]{2,20}$/", $username);
+}
+
+function adminLogin($msg = "Password di amministratore") {
+  // La password è stata inserita?
+  if(! isset($_POST['admin_pw'])) {
+    echo "<p style='padding-top:20vh;'>$msg</p>\n".
+        "<form action='".$_SERVER['REQUEST_URI']."' method='post'>\n".
+        "<input type='text' name='admin_pw' placeholder='Inserire la password' /><br>\n".
+        "<button type='submit'>Accedi</button>\n".
+        "<button type='button' onclick='window.location.href=\"./\";'>Home</button>\n".
+        "</form>\n";
+    return false;
+  }
+
+  if($_POST['admin_pw'] != ADMIN_PW) {
+    echo "<p>Password errata.</p>\n".
+        "<button onclick='window.location.href=\"./\";'>Home</button>\n";
+    return false;
+  }
+
+  return true;
 }
 ?>
