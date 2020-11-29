@@ -9,7 +9,7 @@ Il classico gioco natalizio online.
 Se vuoi installare la tombola sul tuo server, devi:
 1.  Scaricare tutti i file sul tuo server;
 2.  Aggiornare il file ``connect.php`` con le credenziali del tuo database e scegliere una password di amministratore;
-3.  Aprire il sito alla pagina ``install.php`` per creare il database.
+3.  Aprire il sito alla pagina ``install.php`` per creare e inizializzare il database.
 
 ## Database
 ![Modello E/R](mysql/modello_er.png)
