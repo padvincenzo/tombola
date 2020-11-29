@@ -14,8 +14,8 @@ Se vuoi installare la tombola sul tuo server, devi:
 ## Database
 ![Modello E/R](mysql/modello_er.png)
 
-### Svuotare il database
-Alcune tabelle del database non devono essere alterate/svuotate. Per ripulire il database eseguire il seguente script ``MySql``:
+### Reset del database
+Alcune tabelle del database non devono essere alterate/svuotate. Per resettare il database eseguire il seguente script ``MySql``:
 
 ```sql
 TRUNCATE tombola_k_avere;
