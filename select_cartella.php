@@ -69,59 +69,66 @@ if(mysqli_num_rows($query) == 1) {
       // Quali sono le cartelle disponibili?
       $query = mysqli_query($dbh, "select idcartella from ".PREFIX."cartella where idcartella not in ( select c.idcartella from ".PREFIX."cartella c, ".PREFIX."avere a, ".PREFIX."utente u, ".PREFIX."server s where a.idutente = u.idutente and a.idcartella = c.idcartella and u.idserver = s.idserver and s.pin = '$pin');");
 
-      $i = 0;
-      $array = array();
+      $n = mysqli_num_rows($query);
 
-      while($cicle = mysqli_fetch_array($query)){
-        $array[$i++] = $cicle['idcartella'];
-      }
+      if($n == 0) {
+        inviaMessaggio("Spiacente, non ci sono più cartelle disponibili", "./");
+        
+      } else {
 
-      // Ne scelgo una random
-      $cartella = $array[rand(0, $i - 1)];
+        $array = array();
 
-      // Da quali numeri è composta?
-      $query = mysqli_query($dbh, "select co.idnumero, co.riga from ".PREFIX."cartella c inner join ".PREFIX."comporre co on co.idcartella = c.idcartella where c.idcartella = '$cartella';");
-
-      $scheda = array();
-      $scheda[0] = array();
-      $scheda[1] = array();
-      $scheda[2] = array();
-
-      // Li metto in una matrice
-      while($cicle = mysqli_fetch_array($query)){
-        $n = $cicle['idnumero'];
-        $r = $cicle['riga'];
-
-        if($n == 90)
-        $c = 8;
-        else
-        $c = $n / 10;
-
-        $c = floor($c);
-        $scheda[$r-1][$c] = $n;
-      }
-
-      echo "  <div class='titolo'>Game PIN: $pin</div>".
-          "  <div id='client_cartella'>\n".
-          "    <table class='cartella'>\n".
-          "     <tr>\n".
-          "        <td colspan='9' id='client_nome'>Cartella nº $cartella</td>\n".
-          "     </tr>\n";
-
-      for($i = 0; $i < 3; $i++){
-        echo "     <tr>\n";
-        for($j = 0; $j < 9; $j++){
-          if(isset($scheda[$i][$j]))
-          echo "        <td id='n".$scheda[$i][$j]."'>".$scheda[$i][$j]."</td>\n";
-          else
-          echo "        <td>·</td>\n";
+        while($cicle = mysqli_fetch_array($query)){
+          $array[] = $cicle['idcartella'];
         }
-        echo "     </tr>\n";
-      }
-      echo "    </table>\n".
-          "  </div>\n".
-          "  <br>\n";
 
+        // Ne scelgo una random
+        $cartella = $array[rand(0, $n)];
+
+        // Da quali numeri è composta?
+        $query = mysqli_query($dbh, "select co.idnumero, co.riga from ".PREFIX."cartella c inner join ".PREFIX."comporre co on co.idcartella = c.idcartella where c.idcartella = '$cartella';");
+
+        $scheda = array();
+        $scheda[0] = array();
+        $scheda[1] = array();
+        $scheda[2] = array();
+
+        // Li metto in una matrice
+        while($cicle = mysqli_fetch_array($query)){
+          $n = $cicle['idnumero'];
+          $r = $cicle['riga'];
+
+          if($n == 90)
+          $c = 8;
+          else
+          $c = $n / 10;
+
+          $c = floor($c);
+          $scheda[$r-1][$c] = $n;
+        }
+
+        echo "  <div class='titolo'>Game PIN: $pin</div>".
+            "  <div id='client_cartella'>\n".
+            "    <table class='cartella'>\n".
+            "     <tr>\n".
+            "        <td colspan='9' id='client_nome'>Cartella nº $cartella</td>\n".
+            "     </tr>\n";
+
+        for($i = 0; $i < 3; $i++){
+          echo "     <tr>\n";
+          for($j = 0; $j < 9; $j++){
+            if(isset($scheda[$i][$j]))
+            echo "        <td id='n".$scheda[$i][$j]."'>".$scheda[$i][$j]."</td>\n";
+            else
+            echo "        <td>·</td>\n";
+          }
+          echo "     </tr>\n";
+        }
+        echo "    </table>\n".
+            "  </div>\n".
+            "  <br>\n";
+
+      }
     }
   }
 
