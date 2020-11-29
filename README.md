@@ -17,11 +17,11 @@ Se vuoi installare la tombola sul tuo server, devi:
 ### Svuotare il database
 Alcune tabelle del database non devono essere alterate/svuotate. Per ripulire il database eseguire il seguente script ``MySql``:
 ```
-TRUNCATE "tombola_k_avere";
-TRUNCATE "tombola_k_estrarre";
-TRUNCATE "tombola_k_server";
-TRUNCATE "tombola_k_utente";
-TRUNCATE "tombola_k_vincere";
+TRUNCATE tombola_k_avere;
+TRUNCATE tombola_k_estrarre;
+TRUNCATE tombola_k_server;
+TRUNCATE tombola_k_utente;
+TRUNCATE tombola_k_vincere;
 ```
 
 [![Donate](https://img.shields.io/badge/donate-paypal-blue.svg)](https://www.paypal.com/paypalme/VincenzoPadula)
