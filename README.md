@@ -17,7 +17,7 @@ Se vuoi installare la tombola sul tuo server, devi:
 ### Svuotare il database
 Alcune tabelle del database non devono essere alterate/svuotate. Per ripulire il database eseguire il seguente script ``MySql``:
 
-```mysql
+```sql
 TRUNCATE tombola_k_avere;
 TRUNCATE tombola_k_estrarre;
 TRUNCATE tombola_k_server;
