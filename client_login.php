@@ -57,7 +57,7 @@ if($pin != "") {
       // Verifico validità Nick
 
       $idserver = $server['idserver'];
-      $query = mysqli_query($dbh, "select nick from ".PREFIX."utente where nick = '$nick' and idserver = '$idserver'");
+      $query = mysqli_query($dbh, "select nick from ".PREFIX."utente where nick = '$nick' and idserver = '$idserver' and uscito is null");
 
       if(mysqli_num_rows($query) == 0) {
 

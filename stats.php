@@ -24,8 +24,10 @@ include("page_header.php");
 
 function getStat($dbh, $query) {
   $result = mysqli_query($dbh, $query);
-  if($result)
-    return (mysqli_fetch_array($result))["n"];
+  if($result) {
+    $n = (mysqli_fetch_array($result))["n"];
+    return ($n != null) ? $n : "0";
+  }
   return "-";
 }
 
@@ -36,15 +38,23 @@ function printStat($dbh, $name, $query) {
 
 if(adminLogin("Statistiche di gioco")) {
 
-  echo "<table style='display:inline-block; text-align:left;'>\n";
+  echo "<p>Statistiche</p>\n<table id='stats'>\n";
 
-  printStat($dbh, "Partite non ancora iniziate", "select count(*) n from ".PREFIX."server where accessibile is true");
+  printStat($dbh, "Partite in attesa", "select count(*) n from ".PREFIX."server where accessibile is true");
   printStat($dbh, "Partite in corso", "select count(*) n from ".PREFIX."server where accessibile is false and terminato is null and offlimits is null");
   printStat($dbh, "Partite terminate", "select count(*) n from ".PREFIX."server where terminato is not null;");
   printStat($dbh, "Partite mai giocate", "select count(*) n from ".PREFIX."server where terminato is null and offlimits is not null;");
-  printStat($dbh, "Media utenti per partita", "select format(avg(n), 1) n from (select count(u.idserver) n from ".PREFIX."server s inner join ".PREFIX."utente u on u.idserver = s.idserver where s.terminato is not null and u.privato is null group by u.idserver) ns;");
 
-  echo "</table><br>\n<button onclick='window.location.href=\"./\";'>Home</button>";
+  printStat($dbh, "Media giocatori per partita", "select format(avg(n), 1) n from (select count(u.idserver) n from ".PREFIX."server s inner join ".PREFIX."utente u on u.idserver = s.idserver where s.terminato is not null and u.privato is null and u.uscito is null group by u.idserver) ns;");
+  printStat($dbh, "Maggior numero di giocatori in una partita", "select max(n) n from (select count(u.idserver) n from ".PREFIX."server s inner join ".PREFIX."utente u on u.idserver = s.idserver where s.terminato is not null and u.privato is null and u.uscito is null group by u.idserver) ns;");
+
+  printStat($dbh, "Media abbandoni per partita", "select format(avg(n), 1) n from (select count(u.idserver) n from ".PREFIX."server s inner join ".PREFIX."utente u on u.idserver = s.idserver where s.terminato is not null and u.privato is null and u.uscito is not null group by u.idserver) ns;");
+  printStat($dbh, "Maggior numero di abbandoni in una partita", "select max(n) n from (select count(u.idserver) n from ".PREFIX."server s inner join ".PREFIX."utente u on u.idserver = s.idserver where s.terminato is not null and u.privato is null and u.uscito is not null group by u.idserver) ns;");
+
+
+  echo "</table><br>\n".
+      "<button onclick='window.location.href=\"./\"'>Home</button>\n".
+      "<button onclick='document.getElementById(\"id\").name=\"admin_pw\";doPost(\"#\",\"".ADMIN_PW."\");'>Ricarica</button>\n";
 
 }
 

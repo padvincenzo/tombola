@@ -217,6 +217,11 @@ function checkClientChanges() {
           mostraMessaggio(msg)
         }
       }
+
+      $("#uscita").unbind()
+      $("#uscita").bind("click", function(e) {
+        window.location.href = "./"
+      })
     } else
     setTimeout(function() { checkClientChanges(); }, 800)
   }})

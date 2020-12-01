@@ -21,8 +21,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 include("connect.php");
 if(isset($idutente)) {
-  mysqli_query($dbh, "update ".PREFIX."utente set uscito = true where idutente = '$idutente';");
+  $result = mysqli_query($dbh, "update ".PREFIX."utente u inner join ".PREFIX."server s on u.idserver = s.idserver set u.uscito = true where u.idutente = '$idutente' and s.terminato is null and s.offlimits is null;");
   unset($_SESSION['idutente']);
+  if(!$result)
+    inviaMessaggio("Logout fallito.", "./");
 }
 
 mysqli_close($dbh);

@@ -67,13 +67,13 @@ if(mysqli_num_rows($query) == 1) {
       $pin = $cicle['pin'];
 
       // Quali sono le cartelle disponibili?
-      $query = mysqli_query($dbh, "select idcartella from ".PREFIX."cartella where idcartella not in ( select c.idcartella from ".PREFIX."cartella c, ".PREFIX."avere a, ".PREFIX."utente u, ".PREFIX."server s where a.idutente = u.idutente and a.idcartella = c.idcartella and u.idserver = s.idserver and s.pin = '$pin');");
+      $query = mysqli_query($dbh, "select idcartella from ".PREFIX."cartella where idcartella not in ( select c.idcartella from ".PREFIX."cartella c, ".PREFIX."avere a, ".PREFIX."utente u, ".PREFIX."server s where a.idutente = u.idutente and a.idcartella = c.idcartella and u.idserver = s.idserver and s.pin = '$pin' and u.uscito is null);");
 
       $n = mysqli_num_rows($query);
 
       if($n == 0) {
         inviaMessaggio("Spiacente, non ci sono più cartelle disponibili", "./");
-        
+
       } else {
 
         $array = array();

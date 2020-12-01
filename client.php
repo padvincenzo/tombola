@@ -36,8 +36,7 @@ if(isset($idutente)) {
       $pin = $server['pin'];
 
       // Prelevo la cartella
-      $query = mysqli_query($dbh, "select co.idnumero, co.riga
-      from ".PREFIX."utente u, ".PREFIX."avere a, ".PREFIX."cartella c, ".PREFIX."comporre co where a.idutente = u.idutente and a.idcartella = c.idcartella and co.idcartella = c.idcartella and u.idutente='".$utente['idutente']."';");
+      $query = mysqli_query($dbh, "select co.idnumero, co.riga from ".PREFIX."utente u, ".PREFIX."avere a, ".PREFIX."cartella c, ".PREFIX."comporre co where a.idutente = u.idutente and a.idcartella = c.idcartella and co.idcartella = c.idcartella and u.idutente='".$utente['idutente']."';");
 
       $scheda = array();
       $scheda[0] = array();
@@ -94,9 +93,9 @@ if(isset($idutente)) {
 
       if($server['terminato']) {
         echo "      <script>mostraMessaggio('Partita terminata');</script>\n".
-            "      <button onclick='window.location.href=\"./\";'>Home</button>\n";
+            "      <button id='uscita' onclick='window.location.href=\"./\";'>Home</button>\n";
       } else {
-        echo "      <button onclick='logout();'>Abbandona</button>\n";
+        echo "      <button id='uscita' onclick='logout();'>Abbandona</button>\n";
       }
 
       echo "  <br>\n".

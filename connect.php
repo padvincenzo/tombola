@@ -28,7 +28,7 @@ $database = 'my_vincenzopadula';
 $psw = '';
 
 // Password di amministratore
-define("ADMIN_PW", "laMiaTombola");
+define("ADMIN_PW", "abcd");
 
 define("PREFIX", "tombola_k_");
 
@@ -77,7 +77,7 @@ function adminLogin($msg = "Password di amministratore") {
   // La password è stata inserita?
   if(! isset($_POST['admin_pw'])) {
     echo "<p style='padding-top:20vh;'>$msg</p>\n".
-        "<form action='".$_SERVER['REQUEST_URI']."' method='post'>\n".
+        "<form action='#' method='post'>\n".
         "<input type='password' name='admin_pw' placeholder='Inserire la password' /><br>\n".
         "<button type='submit'>Accedi</button>\n".
         "<button type='button' onclick='window.location.href=\"./\";'>Home</button>\n".

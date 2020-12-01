@@ -19,12 +19,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
 @font-face {
-  font-family: 'DadHand';
+  font-family: 'Dadhand';
   src: url(dadhand.ttf);
 }
 
 * {
-  font-family: 'DadHand' !important;
+  font-family: 'Dadhand' !important;
   cursor: url(img/cursor_default.png), auto;
 }
 
@@ -290,6 +290,26 @@ footer {
 
 footer a {
   width: 100%;
+}
+
+table#stats {
+  display: inline-block;
+  width: 100%;
+}
+
+table#stats td:first-child {
+  width: 100%;
+  text-align: left;
+  padding-left: 5vw;
+}
+
+table#stats td:last-child {
+  text-align: center;
+  padding-right: 5vw;
+}
+
+table#stats tr:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 ::-webkit-input-placeholder { color: #fff; }
