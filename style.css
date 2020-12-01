@@ -29,10 +29,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 }
 
 body, html {
-  font-size: 1.8rem;
-  background: url(img/bg_wood.png);
   padding: 0;
   margin: 0;
+  font-size: 1.8rem;
+}
+
+body {
+  background: url(img/bg_wood.png);
 }
 
 #container {

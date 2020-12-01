@@ -22,43 +22,30 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 $title = "Statistiche";
 include("page_header.php");
 
+function getStat($dbh, $query) {
+  $result = mysqli_query($dbh, $query);
+  if($result)
+    return (mysqli_fetch_array($result))["n"];
+  return "-";
+}
+
+function printStat($dbh, $name, $query) {
+  $n = getStat($dbh, $query);
+  echo "<tr><td>$name:</td><td>$n</td></tr>\n";
+}
+
 if(adminLogin("Statistiche di gioco")) {
 
-  // Partite non ancora iniziate
-  $query = "select count(*) n from ".PREFIX."server where accessibile is true";
-  $result = mysqli_query($dbh, $query);
-  if(mysqli_num_rows($result) == 1) {
-    $notYetStarted = (mysqli_fetch_array($result))["n"];
-  } else die("Errore query.");
+  echo "<table style='display:inline-block; text-align:left;'>\n";
 
-  // Partite in corso
-  $query = "select count(*) n from ".PREFIX."server where accessibile is false and terminato is null and offlimits is null";
-  $result = mysqli_query($dbh, $query);
-  if(mysqli_num_rows($result) == 1) {
-    $running = (mysqli_fetch_array($result))["n"];
-  } else die("Errore query.");
+  printStat($dbh, "Partite non ancora iniziate", "select count(*) n from ".PREFIX."server where accessibile is true");
+  printStat($dbh, "Partite in corso", "select count(*) n from ".PREFIX."server where accessibile is false and terminato is null and offlimits is null");
+  printStat($dbh, "Partite terminate", "select count(*) n from ".PREFIX."server where terminato is not null;");
+  printStat($dbh, "Partite mai giocate", "select count(*) n from ".PREFIX."server where terminato is null and offlimits is not null;");
+  printStat($dbh, "Media utenti per partita", "select format(avg(n), 1) n from (select count(u.idserver) n from ".PREFIX."server s inner join ".PREFIX."utente u on u.idserver = s.idserver where s.terminato is not null and u.privato is null group by u.idserver) ns;");
 
-  // Partite terminate
-  $query = "select count(*) n from ".PREFIX."server where terminato is not null;";
-  $result = mysqli_query($dbh, $query);
-  if(mysqli_num_rows($result) == 1) {
-    $ended = (mysqli_fetch_array($result))["n"];
-  } else die("Errore query.");
+  echo "</table><br>\n<button onclick='window.location.href=\"./\";'>Home</button>";
 
-  // Partite mai giocate
-  $query = "select count(*) n from ".PREFIX."server where terminato is null and offlimits is not null;";
-  $result = mysqli_query($dbh, $query);
-  if(mysqli_num_rows($result) == 1) {
-    $neverPlayed = (mysqli_fetch_array($result))["n"];
-  } else die("Errore query.");
-
-  echo "<table style='display:inline-block; text-align:left;'>".
-      "<tr><td>Partite non ancora iniziate:</td><td>$notYetStarted</td></tr>".
-      "<tr><td>Partite in corso:</td><td>$running</td></tr>".
-      "<tr><td>Partite terminate:</td><td>$ended</td></tr>".
-      "<tr><td>Partite mai giocate:</td><td>$neverPlayed</td></tr>".
-      "</table><br>".
-      "<button onclick='window.location.href=\"./\";'>Home</button>";
 }
 
 include("page_footer.php");
