@@ -15,7 +15,7 @@ Se vuoi installare la tombola sul tuo server, devi:
 ![Modello E/R](mysql/modello_er.png)
 
 ### Amministrazione
-* ``stats.php`` mostra alcune statistiche del sito;
+* ``stats.php`` mostra le statistiche del sito;
 * ``reset.php`` effettua un reset completo del database.
 
 [![Donate](https://img.shields.io/badge/donate-paypal-blue.svg)](https://www.paypal.com/paypalme/VincenzoPadula)
