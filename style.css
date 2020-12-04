@@ -105,6 +105,10 @@ button {
   text-shadow: 1px 1px 2px black;
 }
 
+button:active {
+  transform: scale(.90);
+}
+
 .small-button {
   width: 10vw;
   height: 5vw;

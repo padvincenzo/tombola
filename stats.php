@@ -26,7 +26,7 @@ function getStat($dbh, $query) {
   $result = mysqli_query($dbh, $query);
   if($result) {
     $n = (mysqli_fetch_array($result))["n"];
-    return ($n != null) ? $n : "0";
+    return ($n != null) ? $n : "-";
   }
   return "-";
 }
@@ -43,7 +43,8 @@ if(adminLogin("Statistiche di gioco")) {
   printStat($dbh, "Partite in attesa", "select count(*) n from ".PREFIX."server where accessibile is true");
   printStat($dbh, "Partite in corso", "select count(*) n from ".PREFIX."server where accessibile is false and terminato is null and offlimits is null");
   printStat($dbh, "Partite terminate", "select count(*) n from ".PREFIX."server where terminato is not null;");
-  printStat($dbh, "Partite mai giocate", "select count(*) n from ".PREFIX."server where terminato is null and offlimits is not null;");
+  printStat($dbh, "Partite mai iniziate", "select count(*) n from ".PREFIX."server where accessibile is true and offlimits is not null;");
+  printStat($dbh, "Partite mai finite", "select count(*) n from ".PREFIX."server where accessibile is false and terminato is null and offlimits is not null;");
 
   printStat($dbh, "Media giocatori per partita", "select format(avg(n), 1) n from (select count(u.idserver) n from ".PREFIX."server s inner join ".PREFIX."utente u on u.idserver = s.idserver where s.terminato is not null and u.privato is null and u.uscito is null group by u.idserver) ns;");
   printStat($dbh, "Maggior numero di giocatori in una partita", "select max(n) n from (select count(u.idserver) n from ".PREFIX."server s inner join ".PREFIX."utente u on u.idserver = s.idserver where s.terminato is not null and u.privato is null and u.uscito is null group by u.idserver) ns;");

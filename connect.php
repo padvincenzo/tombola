@@ -43,7 +43,8 @@ if(isset($_SESSION["idserver"])) $idserver = $_SESSION["idserver"];
 if(isset($_SESSION["idutente"])) $idutente = $_SESSION["idutente"];
 
 /* Cancella le partite abbandonate */
-$query = "update ".PREFIX."server set offlimits = 1 where offlimits is not true and data < '".date('Y-m-d', strtotime("-10 days"))."';";
+$expiry = date('Y-m-d', strtotime("-2 days"));
+$result = mysqli_query($dbh, "update ".PREFIX."server set offlimits = 1 where offlimits is not true and data < '$expiry';");
 
 function redirect($link) {
   header("Location: $link");
@@ -79,8 +80,8 @@ function adminLogin($msg = "Password di amministratore") {
     echo "<p style='padding-top:20vh;'>$msg</p>\n".
         "<form action='#' method='post'>\n".
         "<input type='password' name='admin_pw' placeholder='Inserire la password' /><br>\n".
-        "<button type='submit'>Accedi</button>\n".
         "<button type='button' onclick='window.location.href=\"./\";'>Home</button>\n".
+        "<button type='submit'>Accedi</button>\n".
         "</form>\n";
     return false;
   }
