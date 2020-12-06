@@ -213,7 +213,7 @@ div#ultimi div {
   height: 7vw;
   line-height: 7vw;
   font-size: 4vw;
-  margin: auto;
+  margin: 0 0.5vw;
   text-align: center;
   vertical-align: middle;
   box-shadow: 0 3px 6px 0 rgba(0,0,0,0.5), 0 3px 6px 0 rgba(0,0,0,0.4);

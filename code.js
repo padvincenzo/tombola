@@ -106,6 +106,10 @@ function estrai_numero() {
   $.ajax({url: 'server_estrai.php', success: function(result) {
     if(result == "terminata") {
       mostraMessaggio("La partita è già terminata, non puoi estrarre altri numeri.")
+
+    } else if(result == "noGiocatori") {
+      mostraMessaggio("Non ci sono più giocatori attivi, la partita è terminata.")
+      
     } else {
       var obj = JSON.parse(urldecode(result))
       if(obj.numero != 0) {
