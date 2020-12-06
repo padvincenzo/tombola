@@ -17,6 +17,7 @@ Se vuoi installare la tombola sul tuo server, devi:
 ![Pagine del sito](screenshots/pagine.png)
 
 ### Amministrazione
+* ``install.php`` crea il database e si autoelimina;
 * ``stats.php`` mostra le statistiche del sito;
 * ``reset.php`` effettua un reset completo del database.
 
