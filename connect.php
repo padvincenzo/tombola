@@ -28,7 +28,7 @@ $database = 'my_vincenzopadula';
 $psw = '';
 
 // Password di amministratore
-define("ADMIN_PW", "laMiaTombola");
+define("ADMIN_PW", "abcd");
 
 define("PREFIX", "tombola_k_");
 
