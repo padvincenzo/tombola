@@ -4,6 +4,7 @@
 Il classico gioco natalizio online.
 
 [Gioca sul mio server](https://vincenzopadula.altervista.org/tombola/)
+
 [![Donate](https://img.shields.io/badge/donate-paypal-blue.svg)](https://www.paypal.com/paypalme/VincenzoPadula)
 
 ## Installazione
