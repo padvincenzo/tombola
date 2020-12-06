@@ -28,7 +28,7 @@ $database = 'my_vincenzopadula';
 $psw = '';
 
 // Password di amministratore
-define("ADMIN_PW", "abcd");
+define("ADMIN_PW", "laMiaTombola");
 
 define("PREFIX", "tombola_k_");
 
@@ -43,8 +43,7 @@ if(isset($_SESSION["idserver"])) $idserver = $_SESSION["idserver"];
 if(isset($_SESSION["idutente"])) $idutente = $_SESSION["idutente"];
 
 /* Cancella le partite abbandonate */
-$expiry = date('Y-m-d', strtotime("-2 days"));
-$result = mysqli_query($dbh, "update ".PREFIX."server set offlimits = 1 where offlimits is not true and data < '$expiry';");
+mysqli_query($dbh, "update ".PREFIX."server set offlimits = 1 where offlimits is false and datediff(data, now()) > 2;");
 
 function redirect($link) {
   header("Location: $link");
@@ -52,9 +51,11 @@ function redirect($link) {
 }
 
 function inviaMessaggio($messaggio, $link, $content = null) {
+  global $dbh;
   $data = urlencode(json_encode($content));
   $messaggio = rimuovi_apici($messaggio);
   $_SESSION['messaggio'] = array($messaggio, $data);
+  mysqli_close($dbh);
   redirect($link);
 }
 

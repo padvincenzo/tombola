@@ -26,7 +26,7 @@ include("page_header.php");
 if(isset($idserver)) {
 
   // Ho un server valido?
-  $query = mysqli_query($dbh, "select * from ".PREFIX."server where idserver = '$idserver' and offlimits is null");
+  $query = mysqli_query($dbh, "select * from ".PREFIX."server where idserver = '$idserver' and offlimits is false");
 
   if(mysqli_num_rows($query) == 1) {
     $server = mysqli_fetch_array($query);

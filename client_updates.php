@@ -24,7 +24,7 @@ include("connect.php");
 if(isset($idutente)) {
 
   // Ho un idutente valido?
-  $query = mysqli_query($dbh, "select s.idserver, s.accessibile, s.terminato from ".PREFIX."utente u inner join ".PREFIX."server s on u.idserver = s.idserver where u.idutente = '$idutente' and s.offlimits is null and u.uscito is null;");
+  $query = mysqli_query($dbh, "select s.idserver, s.accessibile, s.terminato from ".PREFIX."utente u inner join ".PREFIX."server s on u.idserver = s.idserver where u.idutente = '$idutente' and s.offlimits is false and u.uscito is null;");
 
   if(mysqli_num_rows($query) == 1) {
 

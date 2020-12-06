@@ -26,7 +26,7 @@ include("connect.php");
 if(isset($idserver)) {
 
   // Il server è ancora attivo?
-  $query = mysqli_query($dbh, "select * from ".PREFIX."server where idserver = '$idserver' and terminato is null");
+  $query = mysqli_query($dbh, "select * from ".PREFIX."server where idserver = '$idserver' and terminato is false");
 
   if(mysqli_num_rows($query) == 1) {
 

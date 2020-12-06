@@ -22,11 +22,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 include("connect.php");
 
 if(isset($idserver)) {
-  mysqli_query($dbh, "update ".PREFIX."server set offlimits = 1, accessibile = 0, terminato = 1 where idserver = '$idserver'");
+  mysqli_query($dbh, "update ".PREFIX."server set offlimits = 1 where idserver = '$idserver'");
 }
-
-// Setto offlimits tutte le partite aperte da più di 2 giorni
-mysqli_query($dbh, "update ".PREFIX."server set offlimits = 1 where datediff(NOW(), data) > 2;");
 
 // Genero il PIN
 $query = "select lpad(e*10000+d*1000+c*100+b*10+a,5,\"0\") n from
@@ -35,7 +32,7 @@ $query = "select lpad(e*10000+d*1000+c*100+b*10+a,5,\"0\") n from
         (select 0 c union all select 1 union all select 2 union all select 3 union all select 4 union all select 5 union all select 6 union all select 7 union all select 8 union all select 9) t3,
         (select 0 d union all select 1 union all select 2 union all select 3 union all select 4 union all select 5 union all select 6 union all select 7 union all select 8 union all select 9) t4,
         (select 0 e union all select 1 union all select 2 union all select 3 union all select 4 union all select 5 union all select 6 union all select 7 union all select 8 union all select 9) t5
-        where lpad(e*10000+d*1000+c*100+b*10+a,5,\"0\") not in (select pin from ".PREFIX."server where offlimits is null)
+        where lpad(e*10000+d*1000+c*100+b*10+a,5,\"0\") not in (select pin from ".PREFIX."server where offlimits is false)
         order by 1";
 
 $result = mysqli_query($dbh, $query);
@@ -53,7 +50,7 @@ while($cicle = mysqli_fetch_array($result)) {
 $pin = $codici[rand(0, $n)];
 
 // Aggiungo il server al database
-$query = "insert into ".PREFIX."server (pin, accessibile, data) values ('$pin', true, NOW());";
+$query = "insert into ".PREFIX."server (pin, data, accessibile, terminato, offlimits) values ('$pin', now(), true, false, false);";
 mysqli_query($dbh, $query);
 $idserver = mysqli_insert_id($dbh)."";
 $_SESSION["idserver"] = $idserver;
