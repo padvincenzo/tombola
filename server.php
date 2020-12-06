@@ -34,9 +34,10 @@ if(isset($idserver)) {
 
     if($server['accessibile'] == '1') {                 // Server in ascolto
 
-      echo "      <p class='text-big'>Game PIN: $pin</p>\n".
-          "      <button id='btnIniziaPartita' onclick='chiedi(\"Iniziamo la partita?\",\"server_start.php\");'>Inizia partita</button>\n".
+      echo "      <button id='btnIniziaPartita' onclick='chiedi(\"Iniziamo la partita?\",\"server_start.php\");'>Inizia partita</button>\n".
           "      <button onclick='termina_partita()'>Annulla</button>\n".
+
+          "      <p style='font-size:5vw; line-height:6vw;'>Game PIN:</p><p style='font-size:12vw; margin-top:-12px; background-color:rgba(0,0,0,0.1); line-height:12vw;'>$pin</p>\n".
 
           "      <table id='informazioni'>\n".
           "          <tr>\n".
@@ -155,10 +156,10 @@ function printLastNumbers($dbh, $idserver) {
       "    <div id='ultimi'>\n";
   for($i = 1; $i < 6; $i++) {
 
-    if($cicle = mysqli_fetch_array($query)) $ultimo_estratto = $cicle['idnumero'];
-    else                                    $ultimo_estratto = "";
+    // Ultimo estratto
+    $n = ($cicle = mysqli_fetch_array($query)) ? $cicle['idnumero'] : "";
 
-    echo "     <div id='u$i'>".$ultimo_estratto."</div>\n";
+    echo "     <div id='u$i'>$n</div>\n";
   }
   echo "    </div>\n".
       "    <br>\n";

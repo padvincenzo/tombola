@@ -22,7 +22,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 $title = "Statistiche";
 include("page_header.php");
 
-function getStat($dbh, $query) {
+function getStat($query) {
+  global $dbh;
   $result = mysqli_query($dbh, $query);
   if($result) {
     $n = (mysqli_fetch_array($result))["n"];
@@ -31,8 +32,8 @@ function getStat($dbh, $query) {
   return "-";
 }
 
-function printStat($dbh, $name, $query) {
-  $n = getStat($dbh, $query);
+function printStat($name, $query) {
+  $n = getStat($query);
   echo "<tr><td>$name:</td><td>$n</td></tr>\n";
 }
 
@@ -40,17 +41,17 @@ if(adminLogin("Statistiche di gioco")) {
 
   echo "<p>Statistiche</p>\n<table id='stats'>\n";
 
-  printStat($dbh, "Partite in attesa", "select count(*) n from ".PREFIX."server where accessibile is true");
-  printStat($dbh, "Partite in corso", "select count(*) n from ".PREFIX."server where accessibile is false and terminato is null and offlimits is null");
-  printStat($dbh, "Partite terminate", "select count(*) n from ".PREFIX."server where terminato is not null;");
-  printStat($dbh, "Partite mai iniziate", "select count(*) n from ".PREFIX."server where accessibile is true and offlimits is not null;");
-  printStat($dbh, "Partite mai finite", "select count(*) n from ".PREFIX."server where accessibile is false and terminato is null and offlimits is not null;");
+  printStat("Partite concluse", "select count(*) n from ".PREFIX."server where terminato is not null;");
+  printStat("Partite in corso", "select count(*) n from ".PREFIX."server where accessibile is false and terminato is null and offlimits is null");
+  printStat("Partite in attesa", "select count(*) n from ".PREFIX."server where accessibile is true and offlimits is null");
+  printStat("Partite mai iniziate", "select count(*) n from ".PREFIX."server where accessibile is true and offlimits is not null;");
+  printStat("Partite mai finite", "select count(*) n from ".PREFIX."server where accessibile is false and terminato is null and offlimits is not null;");
 
-  printStat($dbh, "Media giocatori per partita", "select format(avg(n), 1) n from (select count(u.idserver) n from ".PREFIX."server s inner join ".PREFIX."utente u on u.idserver = s.idserver where s.terminato is not null and u.privato is null and u.uscito is null group by u.idserver) ns;");
-  printStat($dbh, "Maggior numero di giocatori in una partita", "select max(n) n from (select count(u.idserver) n from ".PREFIX."server s inner join ".PREFIX."utente u on u.idserver = s.idserver where s.terminato is not null and u.privato is null and u.uscito is null group by u.idserver) ns;");
+  printStat("Media giocatori per partita", "select format(avg(n), 1) n from (select count(u.idserver) n from ".PREFIX."server s inner join ".PREFIX."utente u on u.idserver = s.idserver where s.terminato is not null and u.privato is null and u.uscito is null group by u.idserver) ns;");
+  printStat("Maggior numero di giocatori in una partita", "select max(n) n from (select count(u.idserver) n from ".PREFIX."server s inner join ".PREFIX."utente u on u.idserver = s.idserver where s.terminato is not null and u.privato is null and u.uscito is null group by u.idserver) ns;");
 
-  printStat($dbh, "Media abbandoni per partita", "select format(avg(n), 1) n from (select count(u.idserver) n from ".PREFIX."server s inner join ".PREFIX."utente u on u.idserver = s.idserver where s.terminato is not null and u.privato is null and u.uscito is not null group by u.idserver) ns;");
-  printStat($dbh, "Maggior numero di abbandoni in una partita", "select max(n) n from (select count(u.idserver) n from ".PREFIX."server s inner join ".PREFIX."utente u on u.idserver = s.idserver where s.terminato is not null and u.privato is null and u.uscito is not null group by u.idserver) ns;");
+  printStat("Media abbandoni per partita", "select format(avg(n), 1) n from (select count(u.idserver) n from ".PREFIX."server s inner join ".PREFIX."utente u on u.idserver = s.idserver where s.terminato is not null and u.privato is null and u.uscito is not null group by u.idserver) ns;");
+  printStat("Maggior numero di abbandoni in una partita", "select max(n) n from (select count(u.idserver) n from ".PREFIX."server s inner join ".PREFIX."utente u on u.idserver = s.idserver where s.terminato is not null and u.privato is null and u.uscito is not null group by u.idserver) ns;");
 
 
   echo "</table><br>\n".
