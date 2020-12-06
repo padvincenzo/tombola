@@ -1,9 +1,10 @@
+![Homepage](screenshots/homepage.png)
+
 # Tombola
 Il classico gioco natalizio online.
 
 [Gioca sul mio server](https://vincenzopadula.altervista.org/tombola/)
-
-![Homepage](screenshots/homepage.png)
+[![Donate](https://img.shields.io/badge/donate-paypal-blue.svg)](https://www.paypal.com/paypalme/VincenzoPadula)
 
 ## Installazione
 Se vuoi installare la tombola sul tuo server, devi:
@@ -17,5 +18,3 @@ Se vuoi installare la tombola sul tuo server, devi:
 ### Amministrazione
 * ``stats.php`` mostra le statistiche del sito;
 * ``reset.php`` effettua un reset completo del database.
-
-[![Donate](https://img.shields.io/badge/donate-paypal-blue.svg)](https://www.paypal.com/paypalme/VincenzoPadula)
