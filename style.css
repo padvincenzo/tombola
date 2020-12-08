@@ -384,6 +384,14 @@ table#stats tr:hover {
     font-size: 6vw;
   }
 
+  #utenti {
+    font-size: 5vw;
+  }
+
+  #utenti div div:first-child {
+    font-size: 6vw;
+  }
+
   #client_cartella {
     float: none;
     margin: 0;
