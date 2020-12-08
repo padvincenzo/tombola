@@ -27,6 +27,7 @@ ob_start( );
 <head>
   <title><?php echo $title ?> - Tombola!</title>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- MaxCDN -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -35,7 +36,7 @@ ob_start( );
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
   <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 
-  <link rel="icon" href="img/icon.png">
+  <link rel="icon" href="img/icon.svg">
   <link rel="stylesheet" type="text/css" href="style.css">
   <script src="code.js"></script>
 </head>

@@ -37,7 +37,7 @@ if(isset($idserver)) {
       echo "      <button id='btnIniziaPartita' onclick='chiedi(\"Iniziamo la partita?\",\"server_start.php\");'>Inizia partita</button>\n".
           "      <button onclick='termina_partita()'>Annulla</button>\n".
 
-          "      <p style='font-size:5vw; line-height:6vw;'>Game PIN:</p><p style='font-size:12vw; margin-top:-12px; background-color:rgba(0,0,0,0.1); line-height:12vw;'>$pin</p>\n".
+          "      <p id='pin-title'>Game PIN:</p><p id='pin-code'>$pin</p>\n".
 
           "      <table id='informazioni'>\n".
           "          <tr>\n".

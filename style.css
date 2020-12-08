@@ -25,7 +25,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 * {
   font-family: 'Dadhand' !important;
-  cursor: url(img/cursor_default.png), auto;
+  cursor: url(img/cursor_default.svg), auto;
 }
 
 body, html {
@@ -87,10 +87,10 @@ a           { color: #7f3618; text-decoration: none; }
 a:link      { color: #7f3618; text-decoration: none; }
 a:visited   { color: #7f3618; text-decoration: none; }
 a:active    { color: #ffffff; text-decoration: none; }
-a:hover     { color: #ffffff; text-decoration: none; cursor: url(img/cursor_pointer.png), pointer; }
+a:hover     { color: #ffffff; text-decoration: none; cursor: url(img/cursor_pointer.svg), pointer; }
 
 button {
-  width: 22vw;
+  width: 21vw;
   height: 10vw;
   line-height: 10vw;
   color: white;
@@ -100,7 +100,7 @@ button {
   background-repeat: no-repeat;
   border-style: hidden;
   margin: 2vw 1vw;
-  cursor: url(img/cursor_pointer.png), pointer;
+  cursor: url(img/cursor_pointer.svg), pointer;
   font-size: 3vw;
   text-shadow: 1px 1px 2px black;
 }
@@ -118,7 +118,7 @@ button:active {
 }
 
 button:disabled {
-  cursor: url(img/cursor_wait.png), progress;
+  cursor: url(img/cursor_wait.svg), progress;
   opacity: 0.6;
 }
 
@@ -252,6 +252,18 @@ div#ultimi div:empty {
   margin: 20px 20px 0 20px;
 }
 
+#pin-title {
+  font-size: 5vw;
+  line-height: 6vw;
+}
+
+#pin-code {
+  font-size: 12vw;
+  margin-top: -12px;
+  background-color: rgba(0,0,0,0.1);
+  line-height: 12vw;
+}
+
 table#informazioni {
   font-size: 3vw;
   margin-top: 20px;
@@ -320,3 +332,111 @@ table#stats tr:hover {
 ::-moz-placeholder { color: #fff; }
 :-ms-input-placeholder { color: #fff; }
 :-moz-placeholder { color: #fff; }
+
+@media only screen and (max-width: 600px) {
+  body, html {
+    font-size: 1.6rem;
+  }
+
+  #logo {
+    width: 90vw;
+  }
+
+  #box {
+    width: 80vw;
+  }
+
+  button {
+    width: 36vw;
+    height: 18vw;
+    line-height: 18vw;
+    font-size: 5vw;
+  }
+
+  .small-button {
+    width: 20vw;
+    height: 10vw;
+    line-height: 10vw;
+    font-size: 4vw;
+  }
+
+  input {
+    width: 86vw;
+    font-size: 10vw;
+    line-height: 10vw;
+  }
+
+  #w-help {
+    font-size: 5vw;
+  }
+
+  #pin-title {
+    font-size: 8vw;
+    line-height: 11vw;
+  }
+
+  #pin-code {
+    font-size: 16vw;
+    line-height: 18vw;
+  }
+
+  table#informazioni {
+    font-size: 6vw;
+  }
+
+  #client_cartella {
+    float: none;
+    margin: 0;
+  }
+
+  #client_cartella table {
+    border-spacing: 1vw 3vw;
+  }
+
+  #tombolone {
+    margin: 10px 0;
+  }
+
+  table.cartella td {
+    width: 9vw;
+    height: 9vw;
+    font-size: 5vw;
+  }
+
+  table#vincitori {
+    font-size: 8vw;
+  }
+
+  div#ultimi div {
+    width: 14vw;
+    height: 14vw;
+    line-height: 14vw;
+    font-size: 9vw;
+  }
+
+  div#ultimi div:first-child {
+    width: 20vw;
+    height: 20vw;
+    line-height: 20vw;
+    font-size: 14vw;
+    box-shadow: 0 3px 6px 0 rgba(0,0,0,0.5), 0 3px 6px 0 rgba(0,0,0,0.4);
+    border-radius: 50%;
+  }
+
+  a {
+    font-size: 10vw;
+  }
+
+  footer {
+    text-align: center;
+    display: block;
+    line-height: inherit;
+    padding: 10px 0;
+  }
+
+  footer a {
+    display: block;
+    font-size: 6vw;
+    margin: 8px 0;
+  }
+}
