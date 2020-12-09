@@ -23,9 +23,20 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   src: url(dadhand.ttf);
 }
 
+:root {
+  --cursor-default: url(img/cursor_default.svg), auto;
+  --cursor-pointer: url(img/cursor_pointer.svg), pointer;
+  --cursor-wait: url(img/cursor_wait.svg), wait;
+}
+
 * {
   font-family: 'Dadhand' !important;
-  cursor: url(img/cursor_default.svg), auto;
+  cursor: var(--cursor-default);
+}
+
+*::selection {
+  background-color: #502D06;
+  color: #FFF;
 }
 
 body, html {
@@ -48,6 +59,10 @@ body {
   max-width: 1000px;
   width: 80vw;
   margin: 5vh 0 10vh 0;
+}
+
+#logo:hover {
+  cursor: var(--cursor-pointer);
 }
 
 #box_b {
@@ -83,11 +98,11 @@ body {
   overflow-y: auto;
 }
 
-a           { color: #7f3618; text-decoration: none; }
-a:link      { color: #7f3618; text-decoration: none; }
-a:visited   { color: #7f3618; text-decoration: none; }
-a:active    { color: #ffffff; text-decoration: none; }
-a:hover     { color: #ffffff; text-decoration: none; cursor: url(img/cursor_pointer.svg), pointer; }
+a           { color: #7f3618; text-decoration: none; cursor: var(--cursor-pointer); }
+a:link      { color: #7f3618; text-decoration: none; cursor: var(--cursor-pointer); }
+a:visited   { color: #7f3618; text-decoration: none; cursor: var(--cursor-pointer); }
+a:active    { color: #ffffff; text-decoration: none; cursor: var(--cursor-pointer); }
+a:hover     { color: #ffffff; text-decoration: none; cursor: var(--cursor-pointer); }
 
 button {
   width: 21vw;
@@ -100,7 +115,7 @@ button {
   background-repeat: no-repeat;
   border-style: hidden;
   margin: 2vw 1vw;
-  cursor: url(img/cursor_pointer.svg), pointer;
+  cursor: var(--cursor-pointer);
   font-size: 3vw;
   text-shadow: 1px 1px 2px black;
 }
@@ -118,7 +133,7 @@ button:active {
 }
 
 button:disabled {
-  cursor: url(img/cursor_wait.svg), progress;
+  cursor: var(--cursor-wait);
   opacity: 0.6;
 }
 
@@ -128,7 +143,7 @@ input {
   line-height: 5vw;
   color: white;
   width: 70vw;
-  border-color: rgba(0,0,0,0.5);
+  border-color: #502D06;
   border-width: 0 0 4px 0;
   border-style: solid;
   border-radius: 16px;
@@ -294,23 +309,13 @@ table#vincitori td {
   color: #5F1600;
 }
 
-footer {
-  text-align: center;
-  display: flex;
-  width: 100%;
-  font-size: 3vw;
-  line-height: 6vw;
-  margin-top: 50px;
-  background-color: rgba(0,0,0,0.1);
-}
-
-footer a {
-  width: 100%;
-}
-
 table#stats {
   display: inline-block;
   width: 100%;
+}
+
+table#stats td {
+  font-size: 1.6rem;
 }
 
 table#stats td:first-child {
@@ -326,6 +331,22 @@ table#stats td:last-child {
 
 table#stats tr:hover {
   background-color: rgba(0, 0, 0, 0.1);
+}
+
+footer {
+  text-align: center;
+  display: block;
+  width: 100%;
+  font-size: 3vw;
+  margin-top: 50px;
+  background-color: rgba(0,0,0,0.1);
+}
+
+footer a {
+  display: inline-block;
+  line-height: 6vw;
+  width: 48%;
+  padding: 0;
 }
 
 ::-webkit-input-placeholder { color: #fff; }
@@ -431,6 +452,10 @@ table#stats tr:hover {
     border-radius: 50%;
   }
 
+  table#stats td {
+    font-size: 1rem;
+  }
+
   a {
     font-size: 10vw;
   }
@@ -446,5 +471,6 @@ table#stats tr:hover {
     display: block;
     font-size: 6vw;
     margin: 8px 0;
+    width: 100%;
   }
 }
