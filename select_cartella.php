@@ -67,7 +67,7 @@ if(mysqli_num_rows($query) == 1) {
       $pin = $cicle['pin'];
 
       // Quali sono le cartelle disponibili?
-      $query = mysqli_query($dbh, "select idcartella from ".PREFIX."cartella where idcartella not in ( select c.idcartella from ".PREFIX."cartella c, ".PREFIX."avere a, ".PREFIX."utente u, ".PREFIX."server s where a.idutente = u.idutente and a.idcartella = c.idcartella and u.idserver = s.idserver and s.pin = '$pin' and u.uscito is null);");
+      $query = mysqli_query($dbh, "select idcartella from ".PREFIX."cartella where idcartella not in ( select a.idcartella from ".PREFIX."avere a inner join ".PREFIX."utente u on a.idutente = u.idutente where u.idserver = '$idserver' and u.uscito is null);");
 
       $n = mysqli_num_rows($query);
 
@@ -78,15 +78,15 @@ if(mysqli_num_rows($query) == 1) {
 
         $array = array();
 
-        while($cicle = mysqli_fetch_array($query)){
+        while(($cicle = mysqli_fetch_array($query))){
           $array[] = $cicle['idcartella'];
         }
 
         // Ne scelgo una random
-        $cartella = $array[rand(0, $n)];
+        $cartella = $array[rand(0, $n - 1)];
 
         // Da quali numeri è composta?
-        $query = mysqli_query($dbh, "select co.idnumero, co.riga from ".PREFIX."cartella c inner join ".PREFIX."comporre co on co.idcartella = c.idcartella where c.idcartella = '$cartella';");
+        $query = mysqli_query($dbh, "select idnumero, riga from ".PREFIX."comporre where idcartella = '$cartella';");
 
         $scheda = array();
         $scheda[0] = array();

@@ -44,7 +44,7 @@ if(isset($idutente)) {
     }
     $idserver = $cicle["idserver"];
 
-    $query = "select e.idnumero from ".PREFIX."estrarre e where e.idserver = $idserver order by e.idestrarre desc;";
+    $query = "select idnumero from ".PREFIX."estrarre where idserver = '$idserver' order by idestrarre desc;";
     $ris = mysqli_query($dbh, $query);
     $risposta["nn"] = mysqli_num_rows($ris);
     for($i = 0; $i < $risposta["nn"]; $i++) {
@@ -52,7 +52,7 @@ if(isset($idutente)) {
       $risposta["numero"][$i] = $cicle["idnumero"];
     }
 
-    $query = "select u.nick, p.testo from ".PREFIX."utente u, ".PREFIX."vincere v, ".PREFIX."premio p where v.idutente = u.idutente and v.idpremio = p.idpremio and u.idserver = $idserver order by p.idpremio, u.nick";
+    $query = "select u.nick, p.testo from ".PREFIX."utente u, ".PREFIX."vincere v, ".PREFIX."premio p where v.idutente = u.idutente and v.idpremio = p.idpremio and u.idserver = '$idserver' order by p.idpremio, u.nick";
     $ris = mysqli_query($dbh, $query);
     $risposta["np"] = mysqli_num_rows($ris);
     for($i = 0; $i < $risposta["np"]; $i++) {
