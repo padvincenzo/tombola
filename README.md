@@ -3,6 +3,17 @@
 # Tombola [![Donate](https://img.shields.io/badge/donate-paypal-blue.svg)](https://www.paypal.com/paypalme/VincenzoPadula)
 Il classico gioco natalizio online.
 
+
+## Indice dei contenuti
+  - [Come si gioca](#come-si-gioca)
+  - [Contribuire](#contribuire)
+  - [Server disponibili](#server-disponibili)
+  - [Installazione](#installazione)
+  - [Come funziona](#come-funziona)
+    - [Pagine](#pagine)
+      - [Amministrazione](#amministrazione)
+    - [Database](#database)
+
 ## Come si gioca
 Questo gioco è pensato per essere giocato in compagnia di amici, parenti, ma anche compagni di banco o colleghi; non ha bisogno di registrazione.
 * Una persona (_tombolone_, _tombolaro_ o _croupier_) si occupa di creare una nuova partita, ottenendo dal server un codice pin;
@@ -24,7 +35,6 @@ Se volete installare la tombola sul vostro server, (e magari provare delle modif
 ## Server disponibili
 [Gioca sul mio server](https://vincenzopadula.altervista.org/tombola/)
 
-### Altri server
 _nessun altro server per ora_
 
 ## Installazione
