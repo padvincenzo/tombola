@@ -24,6 +24,40 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   }
 }())
 
+/* Get the documentElement (<html>) to display the page in fullscreen */
+var elem = document.documentElement
+var fullscreen = false
+
+function toggleFullscreen() {
+  if(fullscreen)
+    closeFullscreen()
+  else
+    openFullscreen()
+  fullscreen = !fullscreen
+}
+
+/* View in fullscreen */
+function openFullscreen() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen()
+  } else if (elem.webkitRequestFullscreen) { /* Safari */
+    elem.webkitRequestFullscreen()
+  } else if (elem.msRequestFullscreen) { /* IE11 */
+    elem.msRequestFullscreen()
+  }
+}
+
+/* Close fullscreen */
+function closeFullscreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen()
+  } else if (document.webkitExitFullscreen) { /* Safari */
+    document.webkitExitFullscreen()
+  } else if (document.msExitFullscreen) { /* IE11 */
+    document.msExitFullscreen()
+  }
+}
+
 function mostraMessaggio(messaggio) {
   $("#messaggio").html(messaggio)
   $("#ok").bind("click", function(e) { nascondiBox(e) })
@@ -109,7 +143,7 @@ function estrai_numero() {
 
     } else if(result == "noGiocatori") {
       mostraMessaggio("Non ci sono più giocatori attivi, la partita è terminata.")
-      
+
     } else {
       var obj = JSON.parse(urldecode(result))
       if(obj.numero != 0) {
