@@ -8,7 +8,7 @@ Il classico gioco natalizio online.
   - [Come si gioca](#come-si-gioca)
   - [Contribuire](#contribuire)
   - [Server disponibili](#server-disponibili)
-  - [Installazione](#installazione)
+    - [Creare un nuovo server](#creare-un-nuovo-server)
   - [Come funziona](#come-funziona)
     - [Pagine](#pagine)
       - [Amministrazione](#amministrazione)
@@ -30,19 +30,18 @@ Chiunque può contribuire a questo progetto, in diversi modi:
 
 Per qualunque dubbio o perplessità possiamo discuterne sulla [pagina apposita](https://github.com/padvincenzo/tombola/discussions)
 
-Se volete installare la tombola sul vostro server, (e magari provare delle modifiche) potete farlo, purchè sia menzionata la pagina principale di questo progetto su GitHub. Nelle discussioni potete anche proporre i vostri server, che aggiungerò alla tabella sottostante.
-
 ## Server disponibili
 [Gioca sul mio server](https://vincenzopadula.altervista.org/tombola/)
 
 _nessun altro server per ora_
 
-## Installazione
+### Creare un nuovo server
 Se vuoi installare la tombola sul tuo server, devi:
 1.  Scaricare tutti i file sul tuo server;
 2.  Aggiornare il file ``connect.php`` con le credenziali del tuo database e scegliere una password di amministratore;
 3.  Aprire il sito alla pagina ``install.php`` per creare e inizializzare il database.
 4.  Sei incoraggiato ad apportare modifiche e implementare nuove funzioni (nel rispetto della [licenza](https://github.com/padvincenzo/tombola/blob/main/LICENSE))
+5.  Menziona la (pagina principale del progetto)[https://github.com/padvincenzo/tombola] e, se vuoi, puoi proporre il tuo server, che aggiungerò alla tabella dei server disponibili.
 
 ## Come funziona
 
