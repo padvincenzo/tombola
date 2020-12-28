@@ -6,4 +6,4 @@ Chiunque può contribuire a questo progetto, in diversi modi:
 
 Per qualunque dubbio o perplessità possiamo discuterne sulla [pagina apposita](https://github.com/padvincenzo/tombola/discussions)
 
-Se volete installare la tombola sul vostro server, (e magari provare delle modifiche) potete farlo, purchè sia menzionata la (pagina principale di questo progetto)[https://github.com/padvincenzo/tombola]. Nelle discussioni potete anche proporre i vostri server, che aggiungerò alla [tabella](https://github.com/padvincenzo/tombola/blob/main/README.md#server-disponibili).
+Se volete installare la tombola sul vostro server, (e magari provare delle modifiche) potete farlo, purchè sia menzionata la [pagina principale di questo progetto](https://github.com/padvincenzo/tombola). Nelle discussioni potete anche proporre i vostri server, che aggiungerò alla [tabella](https://github.com/padvincenzo/tombola/blob/main/README.md#server-disponibili).
