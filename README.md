@@ -28,7 +28,7 @@ Chiunque può contribuire a questo progetto, in diversi modi:
 * Suggerendo nuove idee;
 * Implementando nuove funzionalità.
 
-Per qualunque dubbio o perplessità possiamo discuterne sulla [pagina apposita](https://github.com/padvincenzo/tombola/discussions)
+Per qualunque dubbio o perplessità possiamo discuterne sulla [pagina apposita](https://github.com/padvincenzo/tombola/discussions).
 
 ## Server disponibili
 [Gioca sul mio server](https://vincenzopadula.altervista.org/tombola/)
