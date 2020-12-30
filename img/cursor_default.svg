@@ -11,9 +11,9 @@
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.1"
    id="svg2"
-   width="40"
-   height="40"
-   viewBox="0 0 39.999999 39.999999"
+   width="32"
+   height="32"
+   viewBox="0 0 31.999999 31.999999"
    sodipodi:docname="cursor_default.svg"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)">
   <metadata
@@ -33,16 +33,17 @@
     <marker
        inkscape:stockid="Arrow1Lstart"
        orient="auto"
-       refY="0.0"
-       refX="0.0"
+       refY="0"
+       refX="0"
        id="Arrow1Lstart"
        style="overflow:visible"
        inkscape:isstock="true">
       <path
          id="path1651"
-         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
-         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt"
-         transform="scale(0.8) translate(12.5,0)" />
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt"
+         transform="matrix(0.8,0,0,0.8,10,0)"
+         inkscape:connector-curvature="0" />
     </marker>
     <clipPath
        clipPathUnits="userSpaceOnUse"
@@ -59,13 +60,13 @@
              inkscape:connector-curvature="0"
              id="path1969"
              d="m 0.0977967,0.89351259 c -0.38465016,-0.99331079 -0.69770601,-1.80766625 -0.69567964,-1.80967877 0.002026,-0.002013 0.77285993,0.39760351 1.71296354,0.88803557 0.9401035,0.4904321 1.6987749,0.8937629 1.6859364,0.8962909 -0.012832,0.00253 -0.3856572,0.038113 -0.8284863,0.07908 -0.4428289,0.040966 -0.6084167,-0.1089064 -0.812941,0.082228 -0.20090897,0.1877557 -0.08456,0.378757 -0.17837997,0.8322166 -0.09382,0.45346 -0.1736125,0.827482 -0.1773158,0.83116 -0.0037,0.00368 -0.3214472,-0.8060214 -0.70609723,-1.79933231 z"
-             style="fill:#502d16;fill-opacity:1;stroke:#ffffff;stroke-width:0.26583806;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal;"
+             style="fill:#502d16;fill-opacity:1;stroke:#ffffff;stroke-width:0.26583806;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
              sodipodi:nodetypes="ssscsascs" />
         </g>
       </g>
     </clipPath>
     <filter
-       style="color-interpolation-filters:sRGB;"
+       style="color-interpolation-filters:sRGB"
        inkscape:label="Drop Shadow"
        id="filter2206">
       <feFlood
@@ -110,16 +111,17 @@
      inkscape:window-height="1016"
      id="namedview4"
      showgrid="false"
-     inkscape:zoom="11.313709"
-     inkscape:cx="0.75691795"
-     inkscape:cy="18.424053"
+     inkscape:zoom="22.627418"
+     inkscape:cx="7.8279855"
+     inkscape:cy="15.343471"
      inkscape:window-x="72"
      inkscape:window-y="27"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg2" />
   <path
      style="fill:#502d16;stroke:#ffffff;stroke-width:1.29999995;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.82745098;paint-order:normal;filter:url(#filter2206)"
-     d="M 1.4432401,1.3737402 17.353396,34.520225 20.447146,19.494834 36.204959,16.543662 Z"
+     d="M 1.4432401,-6.6262598 17.353396,26.520225 20.447146,11.494834 36.204959,8.543662 Z"
      id="path1975"
-     inkscape:connector-curvature="0" />
+     inkscape:connector-curvature="0"
+     transform="matrix(0.81803997,0,0,0.87292568,-0.02911298,6.9007145)" />
 </svg>
