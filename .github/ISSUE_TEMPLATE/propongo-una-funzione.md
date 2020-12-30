@@ -1,5 +1,5 @@
 ---
-name: Nuova funzionalità
+name: Propongo una funzione
 about: Suggerisci una nuova funzionalità da implementare
 title: "[IDEA]"
 labels: ''
