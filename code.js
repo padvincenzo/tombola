@@ -167,9 +167,9 @@ function estrai_numero() {
 
       if(obj.stato == "terminata") {
 
-        $("#termina").off('click').on('click', nuova_partita)
+        $("#termina").attr('click', "nuova_partita()")
         $("#termina").html("Nuova partita")
-        $("#estrazione").off('click').on('click', function () { window.location.href = "server_stop.php"; })
+        $("#estrazione").attr('click', "window.location.href = 'server_stop.php'")
         $("#estrazione").html("Home")
 
         if(obj.vincite.user[0] == "Tombolone") obj.vincite.user[0] = "Il tombolone"
