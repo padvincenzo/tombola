@@ -43,7 +43,7 @@ if(isset($_SESSION["idserver"])) $idserver = $_SESSION["idserver"];
 if(isset($_SESSION["idutente"])) $idutente = $_SESSION["idutente"];
 
 /* Cancella le partite abbandonate */
-mysqli_query($dbh, "update ".PREFIX."server set offlimits = 1 where offlimits is false and datediff(data, now()) > 2;");
+mysqli_query($dbh, "update ".PREFIX."server set offlimits = 1 where offlimits is false and datediff(now(), data) > 2;");
 
 function redirect($link) {
   header("Location: $link");
