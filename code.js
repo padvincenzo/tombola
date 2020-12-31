@@ -256,10 +256,7 @@ function checkClientChanges() {
         }
       }
 
-      $("#uscita").unbind()
-      $("#uscita").bind("click", function(e) {
-        window.location.href = "./"
-      })
+      $("#uscita").setAttribute("click", "window.location.href = './'")
     } else
     setTimeout(function() { checkClientChanges(); }, 800)
   }})
