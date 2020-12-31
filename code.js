@@ -167,9 +167,9 @@ function estrai_numero() {
 
       if(obj.stato == "terminata") {
 
-        $("#termina").attr('click', "nuova_partita()")
+        $("#termina").attr('onclick', "nuova_partita()")
         $("#termina").html("Nuova partita")
-        $("#estrazione").attr('click', "window.location.href = 'server_stop.php'")
+        $("#estrazione").attr('onclick', "window.location.href = 'server_stop.php'")
         $("#estrazione").html("Home")
 
         if(obj.vincite.user[0] == "Tombolone") obj.vincite.user[0] = "Il tombolone"
@@ -256,7 +256,7 @@ function checkClientChanges() {
         }
       }
 
-      $("#uscita").attr("click", "window.location.href = './'")
+      $("#uscita").attr("onclick", "window.location.href = './'")
     } else
     setTimeout(function() { checkClientChanges(); }, 800)
   }})
