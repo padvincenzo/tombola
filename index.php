@@ -23,7 +23,7 @@ $title = "Home";
 include("page_header.php");
 ?>
 
-<img id="logo" src="img/logo.svg" draggable="false" onclick="toggleFullscreen()">
+<img id="logo" src="img/logo.svg" draggable="false">
 <br>
 
 <input id='pin' type='text' maxlength='5' autocomplete="off" placeholder="Game PIN¹" onkeyup="if(event.keyCode === 13) { event.preventDefault(); $('#btnGioca').click(); }">
