@@ -31,7 +31,7 @@ Chiunque può contribuire a questo progetto, in diversi modi:
 Per qualunque dubbio o perplessità possiamo discuterne sulla [pagina apposita](https://github.com/padvincenzo/tombola/discussions).
 
 ## Server disponibili
-[Gioca sul mio server](https://vincenzopadula.altervista.org/gioca_tombola/)
+[Gioca sul mio server](https://vincenzopadula.altervista.org/projects/tombola/)
 
 _nessun altro server per ora_
 
