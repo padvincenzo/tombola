@@ -1,4 +1,4 @@
-![Homepage](screenshots/homepage.png)
+![Homepage](docs/screenshots/homepage.png)
 
 # Tombola [![Donate](https://img.shields.io/badge/donate-paypal-blue.svg)](https://www.paypal.com/paypalme/VincenzoPadula)
 Il classico gioco natalizio online.
@@ -9,10 +9,7 @@ Il classico gioco natalizio online.
   - [Contribuire](#contribuire)
   - [Server disponibili](#server-disponibili)
     - [Creare un nuovo server](#creare-un-nuovo-server)
-  - [Come funziona](#come-funziona)
-    - [Pagine](#pagine)
-      - [Amministrazione](#amministrazione)
-    - [Database](#database)
+  - [Altri dettagli](#altri-dettagli)
 
 ## Come si gioca
 Questo gioco è pensato per essere giocato in compagnia di amici, parenti, ma anche compagni di banco o colleghi; non ha bisogno di registrazione.
@@ -43,15 +40,5 @@ Se vuoi installare la tombola sul tuo server, devi:
 4.  Sei incoraggiato ad apportare modifiche e implementare nuove funzioni (nel rispetto della [licenza](https://github.com/padvincenzo/tombola/blob/main/LICENSE))
 5.  Menziona la [pagina principale del progetto](https://github.com/padvincenzo/tombola) e, se vuoi, puoi proporre il tuo server, che aggiungerò alla tabella dei server disponibili.
 
-## Come funziona
-
-### Pagine
-![Pagine del sito](screenshots/pagine.png)
-
-#### Amministrazione
-* ``install.php`` crea il database e si autoelimina;
-* ``reset.php`` effettua un reset del database.
-
-### Database
-![Modello E/R](mysql/modello_er.png)
-
+## Altri dettagli
+Trovi [qui](docs/README.md) ulteriori dettagli.
