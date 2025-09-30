@@ -20,19 +20,20 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-$title = "Home";
-include_once "./includes/header.php";
-?>
+$title = "Reset";
+include_once "../includes/header.php";
 
-<img id="logo" src="assets/img/logo.svg" draggable="false">
-<br>
+if (adminLogin("Reset del database")) {
+    // Reset delle tabelle
+    $query = "TRUNCATE " . PREFIX . "avere; TRUNCATE " . PREFIX . "estrarre; TRUNCATE " . PREFIX . "server; TRUNCATE " . PREFIX . "utente; TRUNCATE " . PREFIX . "vincere;";
+    $result = mysqli_multi_query($dbh, $query);
+    if ($result) {
+        echo "<p>Il database è ora vuoto.</p>";
+    } else {
+        echo "<p>La query ha restituito un errore.</p>";
+    }
 
-<input id='pin' type='text' maxlength='5' autocomplete="off" placeholder="Game PIN¹"
-    onkeyup="if(event.keyCode === 13) { event.preventDefault(); $('#btnGioca').click(); }">
-<p id="w-help">¹Chi crea la partita ha il Game PIN</p>
-<button id='btnGioca' onclick="checkPin();">Gioca!</button>
-<button onclick='nuova_partita();'>Crea partita</button>
+    echo "<button onclick='window.location.href=\"./\";'>Home</button>";
+}
 
-<?php
-include_once "./includes/footer.php";
-?>
+include_once "../includes/footer.php";

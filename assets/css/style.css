@@ -1,32 +1,32 @@
-/*
-Tombola
-Il classico gioco natalizio online.
-
-Copyright (C) 2020  Vincenzo Padula
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <https://www.gnu.org/licenses/>.
-*/
+/**
+ * Tombola
+ * Il classico gioco natalizio online.
+ *
+ * Copyright (C) 2025 Vincenzo Padula <padvincenzo@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
 
 @font-face {
   font-family: 'Dadhand';
-  src: url(dadhand.ttf);
+  src: url(../fonts/Dadhand/dadhand.ttf);
 }
 
 :root {
-  --cursor-default: url(img/cursor_default.svg), auto;
-  --cursor-pointer: url(img/cursor_pointer.svg), pointer;
-  --cursor-wait: url(img/cursor_wait.svg), wait;
+  --cursor-default: url(../img/cursor_default.svg), auto;
+  --cursor-pointer: url(../img/cursor_pointer.svg), pointer;
+  --cursor-wait: url(../img/cursor_wait.svg), wait;
 }
 
 * {
@@ -46,7 +46,7 @@ body, html {
 }
 
 body {
-  background: url(img/bg_page.svg);
+  background: url(../img/bg_page.svg);
 }
 
 #container {
@@ -84,7 +84,7 @@ body {
   color: #502D16;
   box-shadow: 0 10px 18px 0 #0006, 0 6px 20px 0 #0006;
   background-color: #DAB076;
-  background: url(img/bg_message.svg) center;
+  background: url(../img/bg_message.svg) center;
   border-radius: 17px;
   padding: 5vh 5vw 1vh 5vw;
   margin-top: 20vh;
@@ -108,7 +108,7 @@ button {
   height: 10vw;
   line-height: 10vw;
   color: white;
-  background: url(img/button.svg);
+  background: url(../img/button.svg);
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -164,7 +164,7 @@ input {
   padding: 5px;
   color: white;
   box-shadow: 5px 5px 15px rgba(0,0,0,0.7);
-  background: url(img/bg_card.svg);
+  background: url(../img/bg_card.svg);
   border-radius: 12px;
   border-collapse: separate;
   border-spacing: 0.5vw;
@@ -188,7 +188,7 @@ input {
 #client_cartella table {
   border-spacing: 10px 18px;
   box-shadow: 5px 5px 15px rgba(0,0,0,0.7);
-  background: url(img/bg_card.svg);
+  background: url(../img/bg_card.svg);
 }
 
 table.cartella {
@@ -214,7 +214,7 @@ table.cartella td {
 table.cartella td.estratto {
   box-shadow: 0 3px 6px 0 rgba(0,0,0,0.5), 0 3px 6px 0 rgba(0,0,0,0.4);
   color: #7F3618;
-  background: url(img/bg_number.png);
+  background: url(../img/bg_number.png);
   border-style: hidden;
 }
 
@@ -232,7 +232,7 @@ div#ultimi div {
   vertical-align: middle;
   box-shadow: 0 3px 6px 0 rgba(0,0,0,0.5), 0 3px 6px 0 rgba(0,0,0,0.4);
   color: #7F3618;
-  background: url(img/bg_number.png);
+  background: url(../img/bg_number.png);
   border-style: hidden;
   border-radius: 50%;
   display: inline-block;
