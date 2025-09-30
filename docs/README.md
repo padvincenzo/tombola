@@ -2,7 +2,7 @@
 
 ## Pagine
 
-![Pagine del sito](./docs/screenshots/pagine.png)
+![Pagine del sito](./screenshots/pagine.png)
 
 ## Amministrazione
 
