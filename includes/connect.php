@@ -22,14 +22,11 @@
 
 session_start();
 
-// Credenziali database
-$host = 'localhost';
-$user = 'vincenzopadula';
-$database = 'my_vincenzopadula';
-$psw = '';
-
-// Password di amministratore
-define("ADMIN_PW", "abcd");
+// Credenziali database e password di amministratore
+if(!file_exists(__DIR__ . "/config.php")) {
+  die("Configurazione mancante: copia includes/config.sample.php in includes/config.php.");
+}
+require_once __DIR__ . "/config.php";
 
 define("PREFIX", "tombola_k_");
 
@@ -88,7 +85,7 @@ function adminLogin($msg = "Password di amministratore") {
     return false;
   }
 
-  if($_POST['admin_pw'] != ADMIN_PW) {
+  if(ADMIN_PW_HASH === "" || !password_verify($_POST['admin_pw'], ADMIN_PW_HASH)) {
     echo "<p>Password errata.</p>\n".
         "<button onclick='window.location.href=\"./\";'>Home</button>\n";
     return false;
