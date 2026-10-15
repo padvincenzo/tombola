@@ -90,7 +90,7 @@ if (isset($idserver)) {
             if ($next <= 5) {    // Fino alla cinquina
 
                 // Il tombolone ha vinto il premio?
-                if ($query = mysqli_fetch_array(mysqli_query($dbh, "select u.idutente, n.cartella, n.riga from " . PREFIX . "utente u, " . PREFIX . "server s, " . PREFIX . "estrarre e, " . PREFIX . "numero n where u.idserver = s.idserver and e.idserver = s.idserver and e.idnumero = n.idnumero and u.nick = 'Tombolone' and s.idserver = $idserver group by n.cartella, n.riga having count(n.idnumero) = $next;"))) {
+                if ($query = mysqli_fetch_array(mysqli_query($dbh, "select u.idutente, n.cartella, n.riga from " . PREFIX . "utente u, " . PREFIX . "server s, " . PREFIX . "estrarre e, " . PREFIX . "numero n where u.idserver = s.idserver and e.idserver = s.idserver and e.idnumero = n.idnumero and u.privato is true and s.idserver = $idserver group by n.cartella, n.riga having count(n.idnumero) = $next;"))) {
 
                     $idutente = $query['idutente'];
                     mysqli_query($dbh, "insert into " . PREFIX . "vincere (idutente, idpremio) values ($idutente, " . ($next - 1) . ");");
@@ -114,7 +114,7 @@ if (isset($idserver)) {
                 $tombola = false;
 
                 // Il tombolone ha fatto tombola?
-                if ($query = mysqli_fetch_array(mysqli_query($dbh, "select u.idutente, n.cartella, n.riga from " . PREFIX . "utente u, " . PREFIX . "server s, " . PREFIX . "estrarre e, " . PREFIX . "numero n where u.idserver = s.idserver and e.idserver = s.idserver and e.idnumero = n.idnumero and u.nick = 'Tombolone' and s.idserver = $idserver group by n.cartella having count(n.idnumero) = 15;"))) {
+                if ($query = mysqli_fetch_array(mysqli_query($dbh, "select u.idutente, n.cartella, n.riga from " . PREFIX . "utente u, " . PREFIX . "server s, " . PREFIX . "estrarre e, " . PREFIX . "numero n where u.idserver = s.idserver and e.idserver = s.idserver and e.idnumero = n.idnumero and u.privato is true and s.idserver = $idserver group by n.cartella having count(n.idnumero) = 15;"))) {
 
                     $idutente = $query['idutente'];
                     mysqli_query($dbh, "insert into " . PREFIX . "vincere (idutente, idpremio) values ($idutente, 5);");
