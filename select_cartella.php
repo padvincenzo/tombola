@@ -88,7 +88,7 @@ if (mysqli_num_rows($query) == 1) {
                 }
 
                 // Ne scelgo una random
-                $cartella = $array[rand(0, $n - 1)];
+                $cartella = $array[random_int(0, $n - 1)];
 
                 // Da quali numeri è composta?
                 $query = mysqli_query($dbh, "select idnumero, riga from " . PREFIX . "comporre where idcartella = '$cartella';");

@@ -62,7 +62,7 @@ if (isset($idserver)) {
                 }
 
                 // Ne scelgo uno random
-                $numero_estratto = $numeri[rand(0, $n)];
+                $numero_estratto = $numeri[random_int(0, $n)];
 
                 mysqli_query($dbh, "insert into " . PREFIX . "estrarre (idserver, idnumero) values ('$idserver', '$numero_estratto');");
 

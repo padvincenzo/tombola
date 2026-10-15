@@ -49,7 +49,7 @@ while (($cicle = mysqli_fetch_array($result))) {
     $codici[] = $cicle["n"];
 }
 
-$pin = $codici[rand(0, $n - 1)];
+$pin = $codici[random_int(0, $n - 1)];
 
 // Aggiungo il server al database
 $query = "insert into " . PREFIX . "server (pin, data, accessibile, terminato, offlimits) values ('$pin', now(), true, false, false);";
