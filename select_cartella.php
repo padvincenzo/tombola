@@ -45,13 +45,17 @@ if (mysqli_num_rows($query) == 1) {
         if (isset($_POST['cartella'])) {
 
             // Quella cartella è ancora disponibile?
-            $cartella = $_POST['cartella'];
-            $query = mysqli_query($dbh, "select a.idcartella from " . PREFIX . "avere a left join " . PREFIX . "utente u on a.idutente = u.idutente where u.idserver = '$idserver' and a.idcartella = '$cartella';");
+            $cartella = filter_var($_POST['cartella'], FILTER_VALIDATE_INT, array("options" => array("min_range" => 1, "max_range" => 48)));
+            if ($cartella === false) {
+                inviaMessaggio("Cartella non valida", "select_cartella.php");
+            }
+
+            $query = query_param("select a.idcartella from " . PREFIX . "avere a left join " . PREFIX . "utente u on a.idutente = u.idutente where u.idserver = ? and a.idcartella = ?;", "ii", $idserver, $cartella);
 
             // Si, assegno la cartella all'utente
             if (mysqli_num_rows($query) == 0) {
 
-                mysqli_query($dbh, "insert into " . PREFIX . "avere (idutente, idcartella) values ('$idutente', '$cartella');");
+                query_param("insert into " . PREFIX . "avere (idutente, idcartella) values (?, ?);", "ii", $idutente, $cartella);
                 redirect("client.php");
 
                 // No, lo avviso e ricarico la pagina

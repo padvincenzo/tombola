@@ -45,7 +45,11 @@ if($pin != "") {
 
   // Verifico validità PIN
 
-  $query = mysqli_query($dbh, "select * from ".PREFIX."server where pin = '$pin' and accessibile = true;");
+  if(!is_a_pin($pin)) {
+    inviaMessaggio("Il PIN che hai inserito non è valido", "./");
+  }
+
+  $query = query_param("select * from ".PREFIX."server where pin = ? and accessibile = true;", "s", $pin);
 
   if(mysqli_num_rows($query) == 1) {
 
@@ -57,13 +61,17 @@ if($pin != "") {
 
       // Verifico validità Nick
 
-      $idserver = $server['idserver'];
-      $query = mysqli_query($dbh, "select nick from ".PREFIX."utente where nick = '$nick' and idserver = '$idserver' and uscito is null");
+      if(!is_a_username($nick)) {
+        inviaMessaggio("Il nick deve avere da 2 a 20 caratteri tra lettere, numeri e . _ -", "client_login.php", array("pin" => $pin));
+      }
+
+      $idserver = (int) $server['idserver'];
+      $query = query_param("select nick from ".PREFIX."utente where nick = ? and idserver = ? and uscito is null", "si", $nick, $idserver);
 
       if(mysqli_num_rows($query) == 0) {
 
         // Inserisco l'utente nel database
-        mysqli_query($dbh, "insert into ".PREFIX."utente (nick, idserver) values ('$nick', '$idserver');");
+        query_param("insert into ".PREFIX."utente (nick, idserver) values (?, ?);", "si", $nick, $idserver);
         $_SESSION["idutente"] = mysqli_insert_id($dbh)."";
 
         inviaMessaggio("Benvenuto $nick,<br>scegli una cartella con cui giocare.", "select_cartella.php");

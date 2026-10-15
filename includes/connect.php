@@ -37,8 +37,8 @@ if(!$dbh) {
 }
 
 // Session
-if(isset($_SESSION["idserver"])) $idserver = $_SESSION["idserver"];
-if(isset($_SESSION["idutente"])) $idutente = $_SESSION["idutente"];
+if(isset($_SESSION["idserver"])) $idserver = (int) $_SESSION["idserver"];
+if(isset($_SESSION["idutente"])) $idutente = (int) $_SESSION["idutente"];
 
 /* Cancella le partite abbandonate */
 mysqli_query($dbh, "update ".PREFIX."server set offlimits = 1 where offlimits is false and datediff(now(), data) > 2;");
@@ -55,6 +55,21 @@ function inviaMessaggio($messaggio, $link, $content = null) {
   $_SESSION['messaggio'] = array($messaggio, $data);
   mysqli_close($dbh);
   redirect($link);
+}
+
+// Esegue una query con parametri (prepared statement).
+// $types segue la sintassi di mysqli_stmt_bind_param: "s" stringa, "i" intero.
+function query_param($sql, $types, ...$params) {
+  global $dbh;
+  $stmt = mysqli_prepare($dbh, $sql);
+  mysqli_stmt_bind_param($stmt, $types, ...$params);
+  mysqli_stmt_execute($stmt);
+  $result = mysqli_stmt_get_result($stmt);
+  return $result !== false ? $result : mysqli_stmt_errno($stmt) === 0;
+}
+
+function is_a_pin($pin = null) {
+  return is_string($pin) && preg_match("/^[0-9]{5}$/", $pin);
 }
 
 function rimuovi_apici($data) {
