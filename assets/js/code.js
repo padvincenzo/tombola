@@ -24,7 +24,9 @@
  */
 
 (function checkProtocol() {
-  if(location.protocol == "http:") {
+  // In locale (es. Docker) non c'è HTTPS
+  var local = ["localhost", "127.0.0.1", "[::1]"].indexOf(location.hostname) >= 0
+  if(location.protocol == "http:" && !local) {
     location.protocol = "https:"
   }
 }());
