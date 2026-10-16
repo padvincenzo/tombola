@@ -57,8 +57,8 @@ create table tombola_k_numero (
 
 create table tombola_k_comporre (
   idcomporre int auto_increment not null primary key,
-  idcartella int not null references tombolaonline_cartella(idcartella),
-  idnumero int not null references tombolaonline_numero(idnumero),
+  idcartella int not null references tombola_k_cartella(idcartella),
+  idnumero int not null references tombola_k_numero(idnumero),
   riga char(1) not null
 );
 
