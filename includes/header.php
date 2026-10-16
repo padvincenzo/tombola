@@ -20,7 +20,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-include_once "./includes/connect.php";
+include_once __DIR__ . "/connect.php";
 ob_start();
 ?>
 <!DOCTYPE html>
