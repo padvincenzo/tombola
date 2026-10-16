@@ -16,7 +16,6 @@ include_once "./includes/header.php";
 
 // Controllo il server
 if (isset($idserver)) {
-
     // Ho un server valido?
     $query = mysqli_query($dbh, "select * from " . PREFIX . "server where idserver = '$idserver' and offlimits is false");
 
@@ -25,7 +24,6 @@ if (isset($idserver)) {
         $pin = $server['pin'];
 
         if ($server['accessibile'] == '1') {                 // Server in ascolto
-
             echo "      <button id='btnIniziaPartita' onclick='chiedi(\"Iniziamo la partita?\",\"server_start.php\");'>Inizia partita</button>\n" .
                 "      <button onclick='termina_partita()'>Annulla</button>\n" .
 
@@ -45,9 +43,7 @@ if (isset($idserver)) {
                 "      <div id='utenti'></div>\n" .
 
                 "      <script>checkServerChanges();</script>\n";
-
-        } else if (!$server['terminato']) {  // Gioco in esecuzione
-
+        } elseif (!$server['terminato']) {  // Gioco in esecuzione
             // Partita ancora in corso
 
             printTombolone();
@@ -55,9 +51,7 @@ if (isset($idserver)) {
                 "    <button id='termina' onclick='termina_partita()'>Abbandona</button>\n";
             printLastNumbers($dbh, $idserver);
             printWinners($dbh, $idserver);
-
         } else {
-
             // Partita conclusa
 
             printTombolone();
@@ -66,19 +60,14 @@ if (isset($idserver)) {
             printLastNumbers($dbh, $idserver);
             printWinners($dbh, $idserver);
         }
-
     } else {
-
         // Server non esistente
         unset($_SESSION['idserver'], $idserver, $pin);
         printTombolone();
         echo "    <button onclick='nuova_partita();'>Nuova partita</button>\n" .
             "    <button onclick='window.location.href=\"./\"'>Home</button>\n";
-
     }
-
 } else {
-
     // Nessun idserver
     printTombolone();
     echo "    <button onclick='nuova_partita();'>Crea partita</button>\n" .
@@ -106,27 +95,23 @@ function printTombolone()
         "      </tr>\n";
 
     for ($srow = 0; $srow < 3; $srow++) {
-
         echo "     <tr>\n";
         for ($scol = 0; $scol < 2; $scol++) {
-
             echo "        <td>\n" .
                 "         <table class='cartella'>\n";
 
             for ($i = 0; $i < 3; $i++) {
-
                 echo "            <tr>\n";
                 for ($j = 0; $j < 5; $j++) {
-
                     $cicle = mysqli_fetch_array($ris);
                     $numero = $cicle["idnumero"];
                     $estratto = $cicle["estratto"];
 
-                    if ($estratto == "1")
+                    if ($estratto == "1") {
                         echo "             <td class='estratto' id='n$numero'>$numero</td>\n";
-                    else
+                    } else {
                         echo "             <td id='n$numero'>$numero</td>\n";
-
+                    }
                 }
 
                 echo "            </tr>\n";
@@ -148,7 +133,6 @@ function printLastNumbers($dbh, $idserver)
     echo "    <br>\n" .
         "    <div id='ultimi'>\n";
     for ($i = 1; $i < 6; $i++) {
-
         // Ultimo estratto
         $n = ($cicle = mysqli_fetch_array($query)) ? $cicle['idnumero'] : "";
 
@@ -171,7 +155,6 @@ function printWinners($dbh, $idserver)
         "     </tr>\n";
 
     if (mysqli_num_rows($query) > 0) {
-
         while ($cicle = mysqli_fetch_array($query)) {
             $nick = $cicle['nick'];
             $premio = $cicle['testo'];

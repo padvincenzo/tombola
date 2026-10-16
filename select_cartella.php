@@ -18,7 +18,6 @@ include_once "./includes/header.php";
 $query = mysqli_query($dbh, "select * from " . PREFIX . "utente where idutente = '$idutente' and uscito is not true;");
 
 if (mysqli_num_rows($query) == 1) {
-
     $user = mysqli_fetch_array($query);
     $idserver = $user['idserver'];
 
@@ -31,10 +30,8 @@ if (mysqli_num_rows($query) == 1) {
 
         // No, non ce l'ha
     } else {
-
         // L'utente ha richiesto una cartella?
         if (isset($_POST['cartella'])) {
-
             // Quella cartella è ancora disponibile?
             $cartella = filter_var($_POST['cartella'], FILTER_VALIDATE_INT, array("options" => array("min_range" => 1, "max_range" => 48)));
             if ($cartella === false) {
@@ -45,19 +42,16 @@ if (mysqli_num_rows($query) == 1) {
 
             // Si, assegno la cartella all'utente
             if (mysqli_num_rows($query) == 0) {
-
                 query_param("insert into " . PREFIX . "avere (idutente, idcartella) values (?, ?);", "ii", $idutente, $cartella);
                 redirect("client.php");
 
                 // No, lo avviso e ricarico la pagina
             } else {
-
                 inviaMessaggio("Spiacente, la cartella è già in uso da un altro utente", "select_cartella.php");
             }
 
             // Se non ha richiesto una cartella ne carico una random
         } else {
-
             // Qual è il PIN del server?
             $cicle = mysqli_fetch_array(mysqli_query($dbh, "select pin from " . PREFIX . "server where idserver = '$idserver';"));
             $pin = $cicle['pin'];
@@ -69,9 +63,7 @@ if (mysqli_num_rows($query) == 1) {
 
             if ($n == 0) {
                 inviaMessaggio("Spiacente, non ci sono più cartelle disponibili", "./");
-
             } else {
-
                 $array = array();
 
                 while (($cicle = mysqli_fetch_array($query))) {
@@ -108,21 +100,20 @@ if (mysqli_num_rows($query) == 1) {
                 for ($i = 0; $i < 3; $i++) {
                     echo "     <tr>\n";
                     for ($j = 0; $j < 9; $j++) {
-                        if (isset($scheda[$i][$j]))
+                        if (isset($scheda[$i][$j])) {
                             echo "        <td id='n" . $scheda[$i][$j] . "'>" . $scheda[$i][$j] . "</td>\n";
-                        else
+                        } else {
                             echo "        <td>·</td>\n";
+                        }
                     }
                     echo "     </tr>\n";
                 }
                 echo "    </table>\n" .
                     "  </div>\n" .
                     "  <br>\n";
-
             }
         }
     }
-
 } else {
     redirect("./client_login.php");
 }

@@ -19,8 +19,9 @@ if (isset($idutente)) {
         "update " . PREFIX . "utente u inner join " . PREFIX . "server s on u.idserver = s.idserver set u.uscito = true where u.idutente = '$idutente' and s.terminato is false and s.offlimits is false;"
     );
     unset($_SESSION['idutente']);
-    if (!$result)
+    if (!$result) {
         inviaMessaggio("Logout fallito.", "./");
+    }
 }
 
 mysqli_close($dbh);

@@ -14,12 +14,10 @@
 include_once "./includes/connect.php";
 
 if (isset($idserver)) {
-
     // Ho un server valido?
     $query = mysqli_query($dbh, "select * from " . PREFIX . "server where idserver = '$idserver' and accessibile = 1;");
 
     if (mysqli_num_rows($query) == 1) {
-
         $risposta = array(
             "cartelleLibere" => 48,
             "connessi" => 0,

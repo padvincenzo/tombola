@@ -42,7 +42,9 @@ if (isset($_POST["esci"])) {
 }
 
 if (empty($_SESSION["admin"])) {
-    if (isset($errore)) echo "<p>$errore</p>\n";
+    if (isset($errore)) {
+        echo "<p>$errore</p>\n";
+    }
     echo "<p>Installazione e aggiornamenti</p>\n" .
         "<form method='post'>\n" .
         "<input type='password' name='admin_pw' placeholder='Password di amministratore' required autofocus /><br>\n" .

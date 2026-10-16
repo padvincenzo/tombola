@@ -29,7 +29,9 @@ foreach (migrazioni_disponibili() as $versione => $file) {
     echo (isset($applicate[$versione]) ? "  applicata    " : "  da applicare ") . "$versione\n";
 }
 
-if (in_array("--stato", $argv)) exit(0);
+if (in_array("--stato", $argv)) {
+    exit(0);
+}
 
 $esiti = applica_migrazioni();
 if (count($esiti) == 0) {
