@@ -21,6 +21,9 @@
  */
 
 include_once __DIR__ . "/connect.php";
+
+// Percorso della radice del sito, per le pagine nelle sottocartelle (es. "../")
+$root = $root ?? "";
 ob_start();
 ?>
 <!DOCTYPE html>
@@ -38,9 +41,9 @@ ob_start();
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 
-    <link rel="icon" href="assets/img/icon.svg">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <script src="assets/js/code.js"></script>
+    <link rel="icon" href="<?php echo $root; ?>assets/img/icon.svg">
+    <link rel="stylesheet" type="text/css" href="<?php echo $root; ?>assets/css/style.css">
+    <script src="<?php echo $root; ?>assets/js/code.js"></script>
 </head>
 
 <body>

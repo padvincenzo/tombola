@@ -21,6 +21,7 @@
  */
 
 $title = "Reset";
+$root = "../";
 include_once "../includes/header.php";
 
 if (adminLogin("Reset del database")) {
