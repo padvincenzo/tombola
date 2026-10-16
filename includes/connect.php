@@ -22,15 +22,33 @@
 
 session_start();
 
-// Credenziali database e password di amministratore
-if(!file_exists(__DIR__ . "/config.php")) {
-  die("Configurazione mancante: copia includes/config.sample.php in includes/config.php.");
+// Legge un file .env (righe CHIAVE=valore, # per i commenti).
+// Restituisce null se il file non esiste.
+function load_env($path) {
+  if(!is_readable($path)) return null;
+  $env = array();
+  foreach(file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
+    $line = trim($line);
+    if($line === "" || $line[0] === "#" || strpos($line, "=") === false) continue;
+    list($key, $value) = array_map("trim", explode("=", $line, 2));
+    if(strlen($value) >= 2 && ($value[0] === '"' || $value[0] === "'") && substr($value, -1) === $value[0]) {
+      $value = substr($value, 1, -1);
+    }
+    $env[$key] = $value;
+  }
+  return $env;
 }
-require_once __DIR__ . "/config.php";
 
+// Credenziali database e password di amministratore
+$env = load_env(__DIR__ . "/../.env");
+if($env === null) {
+  die("Configurazione mancante: copia .env.example in .env.");
+}
+
+define("ADMIN_PW", $env["ADMIN_PASSWORD"] ?? "");
 define("PREFIX", "tombola_k_");
 
-$dbh = mysqli_connect($host, $user, $psw, $database);
+$dbh = mysqli_connect($env["DB_HOST"] ?? "localhost", $env["DB_USER"] ?? "", $env["DB_PASSWORD"] ?? "", $env["DB_NAME"] ?? "");
 
 if(!$dbh) {
   die("Errore di connessione al database.");
@@ -100,7 +118,7 @@ function adminLogin($msg = "Password di amministratore") {
     return false;
   }
 
-  if(ADMIN_PW_HASH === "" || !password_verify($_POST['admin_pw'], ADMIN_PW_HASH)) {
+  if(ADMIN_PW === "" || !hash_equals(ADMIN_PW, (string) $_POST['admin_pw'])) {
     echo "<p>Password errata.</p>\n".
         "<button onclick='window.location.href=\"./\";'>Home</button>\n";
     return false;

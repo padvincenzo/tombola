@@ -35,7 +35,7 @@ _nessun altro server per ora_
 ### Creare un nuovo server
 Se vuoi installare la tombola sul tuo server, devi:
 1.  Scaricare tutti i file sul tuo server;
-2.  Copiare ``includes/config.sample.php`` in ``includes/config.php`` e inserire le credenziali del database e l'hash della password di amministratore (le istruzioni sono nel file);
+2.  Copiare ``.env.example`` in ``.env`` e inserire le credenziali del database e la password di amministratore;
 3.  Aprire il sito alla pagina ``install.php`` per creare e inizializzare il database.
 4.  Sei incoraggiato ad apportare modifiche e implementare nuove funzioni (nel rispetto della [licenza](https://github.com/padvincenzo/tombola/blob/main/LICENSE))
 5.  Menziona la [pagina principale del progetto](https://github.com/padvincenzo/tombola) e, se vuoi, puoi proporre il tuo server, che aggiungerò alla tabella dei server disponibili.
