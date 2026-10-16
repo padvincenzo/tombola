@@ -1,13 +1,13 @@
 # Ambiente di sviluppo locale.
-#   docker compose up -d       avvia il sito su http://localhost:8080
+#   docker compose up -d       avvia il sito su http://localhost:9090
 #   docker compose down -v     ferma tutto e cancella il database
-# Adminer (gestione database) è su http://localhost:8081
+# Adminer (gestione database) è su http://localhost:9091
 
 services:
   web:
     build: ./docker/php
     ports:
-      - "8080:80"
+      - "9090:80"
     volumes:
       - .:/var/www/html
     environment:
@@ -39,7 +39,7 @@ services:
   adminer:
     image: adminer:4
     ports:
-      - "8081:8080"
+      - "9091:8080"
     depends_on:
       - db
 

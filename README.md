@@ -45,8 +45,8 @@ Con [Docker](https://www.docker.com/) puoi avviare la tombola sul tuo pc, con PH
 ```
 docker compose up -d
 ```
-*   Il gioco è su http://localhost:8080 (password di amministratore: ``admin``);
-*   Adminer, per consultare il database, è su http://localhost:8081 (server ``db``, utente e password ``tombola``);
+*   Il gioco è su http://localhost:9090 (password di amministratore: ``admin``);
+*   Adminer, per consultare il database, è su http://localhost:9091 (server ``db``, utente e password ``tombola``);
 *   Il database viene creato al primo avvio: non serve aprire ``install.php``, che in locale cancellerebbe il proprio file dal repository;
 *   ``docker compose down -v`` ferma tutto e cancella il database.
 
