@@ -53,5 +53,12 @@ docker compose up -d
 *   Il database viene installato e aggiornato a ogni avvio (con ``php setup/migrate.php``);
 *   ``docker compose down -v`` ferma tutto e cancella il database.
 
+Prima di proporre una modifica, formatta il codice (PHP secondo [PSR-12](https://www.php-fig.org/psr/psr-12/), JS e CSS con [Prettier](https://prettier.io/)):
+```
+docker compose run --rm php-tools php-cs-fixer fix
+docker compose run --rm php-tools phpcs
+docker compose run --rm prettier --write assets
+```
+
 ## Altri dettagli
 Trovi [qui](docs/README.md) ulteriori dettagli.
