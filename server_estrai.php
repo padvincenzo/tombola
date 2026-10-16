@@ -4,20 +4,11 @@
  * Tombola
  * Il classico gioco natalizio online.
  *
- * Copyright (C) 2025 Vincenzo Padula <padvincenzo@gmail.com>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * @package   Tombola
+ * @author    Vincenzo Padula <padvincenzo@gmail.com>
+ * @copyright 2020-2026 Vincenzo Padula
+ * @license   https://www.gnu.org/licenses/gpl-3.0.html GPL-3.0-or-later
+ * @link      https://github.com/padvincenzo/tombola
  */
 
 include_once "./includes/connect.php";
@@ -25,21 +16,16 @@ include_once "./includes/connect.php";
 // Controllo il server
 
 if (isset($idserver)) {
-
     // Il server è ancora attivo?
     $query = mysqli_query($dbh, "select * from " . PREFIX . "server where idserver = '$idserver' and terminato is false and offlimits = false;");
 
     if (mysqli_num_rows($query) == 1) {
-
         // Nessun giocatore --> Partita terminata
         $query = mysqli_query($dbh, "select count(*) n from " . PREFIX . "utente where privato is null and uscito is null and idserver = '$idserver';");
         if ((mysqli_fetch_array($query))["n"] == "0") {
-
             mysqli_query($dbh, "update " . PREFIX . "server set offlimits = true where idserver = '$idserver';");
             echo "noGiocatori";
-
         } else {
-
             $risposta = array(
                 "numero" => 0,
                 "stato" => "ok",
@@ -62,7 +48,7 @@ if (isset($idserver)) {
                 }
 
                 // Ne scelgo uno random
-                $numero_estratto = $numeri[rand(0, $n)];
+                $numero_estratto = $numeri[random_int(0, $n)];
 
                 mysqli_query($dbh, "insert into " . PREFIX . "estrarre (idserver, idnumero) values ('$idserver', '$numero_estratto');");
 
@@ -88,10 +74,8 @@ if (isset($idserver)) {
             }
 
             if ($next <= 5) {    // Fino alla cinquina
-
                 // Il tombolone ha vinto il premio?
-                if ($query = mysqli_fetch_array(mysqli_query($dbh, "select u.idutente, n.cartella, n.riga from " . PREFIX . "utente u, " . PREFIX . "server s, " . PREFIX . "estrarre e, " . PREFIX . "numero n where u.idserver = s.idserver and e.idserver = s.idserver and e.idnumero = n.idnumero and u.nick = 'Tombolone' and s.idserver = $idserver group by n.cartella, n.riga having count(n.idnumero) = $next;"))) {
-
+                if ($query = mysqli_fetch_array(mysqli_query($dbh, "select u.idutente, n.cartella, n.riga from " . PREFIX . "utente u, " . PREFIX . "server s, " . PREFIX . "estrarre e, " . PREFIX . "numero n where u.idserver = s.idserver and e.idserver = s.idserver and e.idnumero = n.idnumero and u.privato is true and s.idserver = $idserver group by n.cartella, n.riga having count(n.idnumero) = $next;"))) {
                     $idutente = $query['idutente'];
                     mysqli_query($dbh, "insert into " . PREFIX . "vincere (idutente, idpremio) values ($idutente, " . ($next - 1) . ");");
                     $risposta["vincite"]["n"] = 1;
@@ -108,14 +92,11 @@ if (isset($idserver)) {
                     mysqli_query($dbh, "insert into " . PREFIX . "vincere (idutente, idpremio) values ('$idutente', '$next');");
                     $risposta["vincite"]["user"][] = $win['nick'];
                 }
-
             } else {    // Per la tombola
-
                 $tombola = false;
 
                 // Il tombolone ha fatto tombola?
-                if ($query = mysqli_fetch_array(mysqli_query($dbh, "select u.idutente, n.cartella, n.riga from " . PREFIX . "utente u, " . PREFIX . "server s, " . PREFIX . "estrarre e, " . PREFIX . "numero n where u.idserver = s.idserver and e.idserver = s.idserver and e.idnumero = n.idnumero and u.nick = 'Tombolone' and s.idserver = $idserver group by n.cartella having count(n.idnumero) = 15;"))) {
-
+                if ($query = mysqli_fetch_array(mysqli_query($dbh, "select u.idutente, n.cartella, n.riga from " . PREFIX . "utente u, " . PREFIX . "server s, " . PREFIX . "estrarre e, " . PREFIX . "numero n where u.idserver = s.idserver and e.idserver = s.idserver and e.idnumero = n.idnumero and u.privato is true and s.idserver = $idserver group by n.cartella having count(n.idnumero) = 15;"))) {
                     $idutente = $query['idutente'];
                     mysqli_query($dbh, "insert into " . PREFIX . "vincere (idutente, idpremio) values ($idutente, 5);");
                     $risposta["vincite"]["n"] = 1;
@@ -135,17 +116,14 @@ if (isset($idserver)) {
                 }
 
                 if ($tombola) {
-
                     // Qualcuno ha fatto tombola, la partita termina
                     mysqli_query($dbh, "update " . PREFIX . "server set terminato = true where idserver = '$idserver';");
                     $risposta["stato"] = "terminata";
                 }
-
             }
 
             echo urlencode(json_encode($risposta));
         }
-
     } else {
         echo "terminata";
     }

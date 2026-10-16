@@ -1,0 +1,5 @@
+# Fine riga LF per tutti i file di testo, anche su Windows
+* text=auto eol=lf
+
+# File di terze parti da non modificare
+assets/fonts/** -text

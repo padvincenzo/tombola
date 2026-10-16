@@ -4,20 +4,11 @@
  * Tombola
  * Il classico gioco natalizio online.
  *
- * Copyright (C) 2025 Vincenzo Padula <padvincenzo@gmail.com>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * @package   Tombola
+ * @author    Vincenzo Padula <padvincenzo@gmail.com>
+ * @copyright 2020-2026 Vincenzo Padula
+ * @license   https://www.gnu.org/licenses/gpl-3.0.html GPL-3.0-or-later
+ * @link      https://github.com/padvincenzo/tombola
  */
 
 $title = "Scegli una cartella";
@@ -27,7 +18,6 @@ include_once "./includes/header.php";
 $query = mysqli_query($dbh, "select * from " . PREFIX . "utente where idutente = '$idutente' and uscito is not true;");
 
 if (mysqli_num_rows($query) == 1) {
-
     $user = mysqli_fetch_array($query);
     $idserver = $user['idserver'];
 
@@ -40,29 +30,28 @@ if (mysqli_num_rows($query) == 1) {
 
         // No, non ce l'ha
     } else {
-
         // L'utente ha richiesto una cartella?
         if (isset($_POST['cartella'])) {
-
             // Quella cartella è ancora disponibile?
-            $cartella = $_POST['cartella'];
-            $query = mysqli_query($dbh, "select a.idcartella from " . PREFIX . "avere a left join " . PREFIX . "utente u on a.idutente = u.idutente where u.idserver = '$idserver' and a.idcartella = '$cartella';");
+            $cartella = filter_var($_POST['cartella'], FILTER_VALIDATE_INT, array("options" => array("min_range" => 1, "max_range" => 48)));
+            if ($cartella === false) {
+                inviaMessaggio("Cartella non valida", "select_cartella.php");
+            }
+
+            $query = query_param("select a.idcartella from " . PREFIX . "avere a left join " . PREFIX . "utente u on a.idutente = u.idutente where u.idserver = ? and a.idcartella = ?;", "ii", $idserver, $cartella);
 
             // Si, assegno la cartella all'utente
             if (mysqli_num_rows($query) == 0) {
-
-                mysqli_query($dbh, "insert into " . PREFIX . "avere (idutente, idcartella) values ('$idutente', '$cartella');");
+                query_param("insert into " . PREFIX . "avere (idutente, idcartella) values (?, ?);", "ii", $idutente, $cartella);
                 redirect("client.php");
 
                 // No, lo avviso e ricarico la pagina
             } else {
-
                 inviaMessaggio("Spiacente, la cartella è già in uso da un altro utente", "select_cartella.php");
             }
 
             // Se non ha richiesto una cartella ne carico una random
         } else {
-
             // Qual è il PIN del server?
             $cicle = mysqli_fetch_array(mysqli_query($dbh, "select pin from " . PREFIX . "server where idserver = '$idserver';"));
             $pin = $cicle['pin'];
@@ -74,9 +63,7 @@ if (mysqli_num_rows($query) == 1) {
 
             if ($n == 0) {
                 inviaMessaggio("Spiacente, non ci sono più cartelle disponibili", "./");
-
             } else {
-
                 $array = array();
 
                 while (($cicle = mysqli_fetch_array($query))) {
@@ -84,7 +71,7 @@ if (mysqli_num_rows($query) == 1) {
                 }
 
                 // Ne scelgo una random
-                $cartella = $array[rand(0, $n - 1)];
+                $cartella = $array[random_int(0, $n - 1)];
 
                 // Da quali numeri è composta?
                 $query = mysqli_query($dbh, "select idnumero, riga from " . PREFIX . "comporre where idcartella = '$cartella';");
@@ -113,21 +100,20 @@ if (mysqli_num_rows($query) == 1) {
                 for ($i = 0; $i < 3; $i++) {
                     echo "     <tr>\n";
                     for ($j = 0; $j < 9; $j++) {
-                        if (isset($scheda[$i][$j]))
+                        if (isset($scheda[$i][$j])) {
                             echo "        <td id='n" . $scheda[$i][$j] . "'>" . $scheda[$i][$j] . "</td>\n";
-                        else
+                        } else {
                             echo "        <td>·</td>\n";
+                        }
                     }
                     echo "     </tr>\n";
                 }
                 echo "    </table>\n" .
                     "  </div>\n" .
                     "  <br>\n";
-
             }
         }
     }
-
 } else {
     redirect("./client_login.php");
 }

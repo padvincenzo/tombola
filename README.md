@@ -35,10 +35,30 @@ _nessun altro server per ora_
 ### Creare un nuovo server
 Se vuoi installare la tombola sul tuo server, devi:
 1.  Scaricare tutti i file sul tuo server;
-2.  Aggiornare il file ``connect.php`` con le credenziali del tuo database e scegliere una password di amministratore;
-3.  Aprire il sito alla pagina ``install.php`` per creare e inizializzare il database.
+2.  Copiare ``.env.example`` in ``.env`` e inserire le credenziali del database e la password di amministratore;
+3.  Aprire la pagina ``setup/`` del sito, accedere con la password di amministratore e premere *Installa*;
 4.  Sei incoraggiato ad apportare modifiche e implementare nuove funzioni (nel rispetto della [licenza](https://github.com/padvincenzo/tombola/blob/main/LICENSE))
 5.  Menziona la [pagina principale del progetto](https://github.com/padvincenzo/tombola) e, se vuoi, puoi proporre il tuo server, che aggiungerò alla tabella dei server disponibili.
+
+Dopo ogni aggiornamento dei file, riapri ``setup/`` per applicare le eventuali modifiche al database.
+Se la tombola era già installata con la vecchia pagina ``install.php``, ``setup/`` lo riconosce e applica solo gli aggiornamenti mancanti.
+
+### Sviluppo locale con Docker
+Con [Docker](https://www.docker.com/) puoi avviare la tombola sul tuo pc, con PHP 8.2 e MariaDB, senza installare altro:
+```
+docker compose up -d
+```
+*   Il gioco è su http://localhost:9090 (password di amministratore: ``admin``);
+*   Adminer, per consultare il database, è su http://localhost:9091 (server ``db``, utente e password ``tombola``);
+*   Il database viene installato e aggiornato a ogni avvio (con ``php setup/migrate.php``);
+*   ``docker compose down -v`` ferma tutto e cancella il database.
+
+Prima di proporre una modifica, formatta il codice (PHP secondo [PSR-12](https://www.php-fig.org/psr/psr-12/), JS e CSS con [Prettier](https://prettier.io/)):
+```
+docker compose run --rm php-tools php-cs-fixer fix
+docker compose run --rm php-tools phpcs
+docker compose run --rm prettier --write assets
+```
 
 ## Altri dettagli
 Trovi [qui](docs/README.md) ulteriori dettagli.

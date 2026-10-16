@@ -4,30 +4,19 @@
  * Tombola
  * Il classico gioco natalizio online.
  *
- * Copyright (C) 2025 Vincenzo Padula <padvincenzo@gmail.com>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * @package   Tombola
+ * @author    Vincenzo Padula <padvincenzo@gmail.com>
+ * @copyright 2020-2026 Vincenzo Padula
+ * @license   https://www.gnu.org/licenses/gpl-3.0.html GPL-3.0-or-later
+ * @link      https://github.com/padvincenzo/tombola
  */
 
 $title = "La tua cartella";
 include_once "./includes/header.php";
 
 if (isset($idutente)) {
-
     $utente = mysqli_fetch_array(mysqli_query($dbh, "select * from " . PREFIX . "utente where idutente = '$idutente'"));
     if ($utente != '' && !$utente['uscito']) {                                             // Utente valido
-
         $nick = $utente['nick'];
         $idserver = $utente['idserver'];
 
@@ -45,18 +34,17 @@ if (isset($idutente)) {
             $scheda[2] = array();
 
             while ($cicle = mysqli_fetch_array($query)) {
-
                 $numero = $cicle['idnumero'];
                 $riga = $cicle['riga'];
 
-                if ($numero == 90)
+                if ($numero == 90) {
                     $colonna = 8;
-                else
+                } else {
                     $colonna = $numero / 10;
+                }
 
                 $colonna = floor($colonna);
                 $scheda[$riga - 1][$colonna] = $numero;
-
             }
 
             echo "  <div class='titolo'>Game PIN: $pin</div>" .
@@ -67,26 +55,23 @@ if (isset($idutente)) {
                 "     </tr>\n";
 
             for ($i = 0; $i < 3; $i++) {
-
                 echo "     <tr>\n";
                 for ($j = 0; $j < 9; $j++) {
                     if (isset($scheda[$i][$j])) {
-
                         $numero = $scheda[$i][$j];
                         // Se il numero è stato estratto
                         $query = mysqli_query($dbh, "select e.idnumero from " . PREFIX . "estrarre e inner join " . PREFIX . "server s on e.idserver = s.idserver where s.idserver = '$idserver' and e.idnumero = '$numero'");
-                        if (mysqli_fetch_array($query) != '')
+                        if (mysqli_fetch_array($query) != '') {
                             echo "        <td id='n$numero' class='estratto'>$numero</td>\n";
-                        else
+                        } else {
                             echo "        <td id='n$numero'>$numero</td>\n";
-
-                    } else
-
+                        }
+                    } else {
                         echo "        <td>·</td>\n";
+                    }
                 }
 
                 echo "     </tr>\n";
-
             }
             echo "    </table>\n" .
                 "  </div>\n";
@@ -112,21 +97,15 @@ if (isset($idutente)) {
                 "  </div>\n" .
 
                 "  <script>checkClientChanges();</script>\n";
-
         } else {
-
             // Partita conclusa e offlimits
             redirect("./");
         }
-
     } else {
-
         // Utente non più valido
         redirect("./");
     }
-
 } else {
-
     // Utente non loggato
     redirect("./");
 }

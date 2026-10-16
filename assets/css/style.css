@@ -2,474 +2,504 @@
  * Tombola
  * Il classico gioco natalizio online.
  *
- * Copyright (C) 2025 Vincenzo Padula <padvincenzo@gmail.com>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * @author    Vincenzo Padula <padvincenzo@gmail.com>
+ * @copyright 2020-2026 Vincenzo Padula
+ * @license   GPL-3.0-or-later
+ * @see       https://github.com/padvincenzo/tombola
  */
 
 @font-face {
-  font-family: 'Dadhand';
-  src: url(../fonts/Dadhand/dadhand.ttf);
+    font-family: "Dadhand";
+    src: url(../fonts/Dadhand/dadhand.ttf);
 }
 
 :root {
-  --cursor-default: url(../img/cursor_default.svg), auto;
-  --cursor-pointer: url(../img/cursor_pointer.svg), pointer;
-  --cursor-wait: url(../img/cursor_wait.svg), wait;
+    --cursor-default: url(../img/cursor_default.svg), auto;
+    --cursor-pointer: url(../img/cursor_pointer.svg), pointer;
+    --cursor-wait: url(../img/cursor_wait.svg), wait;
 }
 
 * {
-  font-family: 'Dadhand' !important;
-  cursor: var(--cursor-default);
+    font-family: "Dadhand" !important;
+    cursor: var(--cursor-default);
 }
 
 *::selection {
-  background-color: #502D06;
-  color: #FFF;
+    background-color: #502d06;
+    color: #fff;
 }
 
-body, html {
-  padding: 0;
-  margin: 0;
-  font-size: 1.8rem;
+body,
+html {
+    padding: 0;
+    margin: 0;
+    font-size: 1.8rem;
 }
 
 body {
-  background: url(../img/bg_page.svg);
+    background: url(../img/bg_page.svg);
 }
 
 #container {
-  width: 100%;
-  text-align: center;
-  margin: 0;
+    width: 100%;
+    text-align: center;
+    margin: 0;
 }
 
 #logo {
-  max-width: 1000px;
-  width: 80vw;
-  margin: 5vh 0 10vh 0;
+    max-width: 1000px;
+    width: 80vw;
+    margin: 5vh 0 10vh 0;
 }
 
 #logo:hover {
-  cursor: var(--cursor-pointer);
+    cursor: var(--cursor-pointer);
 }
 
 #box_b {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  padding: 0;
-  margin: 0;
-  background: #0008;
-  text-align: center;
-  z-index: 2;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    background: #0008;
+    text-align: center;
+    z-index: 2;
 }
 
 #box {
-  width: 60vw;
-  height: auto;
-  color: #502D16;
-  box-shadow: 0 10px 18px 0 #0006, 0 6px 20px 0 #0006;
-  background-color: #DAB076;
-  background: url(../img/bg_message.svg) center;
-  border-radius: 17px;
-  padding: 5vh 5vw 1vh 5vw;
-  margin-top: 20vh;
-  display: inline-block;
-  z-index: 3;
+    width: 60vw;
+    height: auto;
+    color: #502d16;
+    box-shadow:
+        0 10px 18px 0 #0006,
+        0 6px 20px 0 #0006;
+    background-color: #dab076;
+    background: url(../img/bg_message.svg) center;
+    border-radius: 17px;
+    padding: 5vh 5vw 1vh 5vw;
+    margin-top: 20vh;
+    display: inline-block;
+    z-index: 3;
 }
 
 #messaggio {
-  max-height: 60vh;
-  overflow-y: auto;
+    max-height: 60vh;
+    overflow-y: auto;
 }
 
-a           { color: #7f3618; text-decoration: none; cursor: var(--cursor-pointer); }
-a:link      { color: #7f3618; text-decoration: none; cursor: var(--cursor-pointer); }
-a:visited   { color: #7f3618; text-decoration: none; cursor: var(--cursor-pointer); }
-a:active    { color: #ffffff; text-decoration: none; cursor: var(--cursor-pointer); }
-a:hover     { color: #ffffff; text-decoration: none; cursor: var(--cursor-pointer); }
+a {
+    color: #7f3618;
+    text-decoration: none;
+    cursor: var(--cursor-pointer);
+}
+a:link {
+    color: #7f3618;
+    text-decoration: none;
+    cursor: var(--cursor-pointer);
+}
+a:visited {
+    color: #7f3618;
+    text-decoration: none;
+    cursor: var(--cursor-pointer);
+}
+a:active {
+    color: #ffffff;
+    text-decoration: none;
+    cursor: var(--cursor-pointer);
+}
+a:hover {
+    color: #ffffff;
+    text-decoration: none;
+    cursor: var(--cursor-pointer);
+}
 
 button {
-  width: 21vw;
-  height: 10vw;
-  line-height: 10vw;
-  color: white;
-  background: url(../img/button.svg);
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  border-style: hidden;
-  margin: 2vw 1vw;
-  cursor: var(--cursor-pointer);
-  font-size: 3vw;
-  text-shadow: 1px 1px 2px black;
+    width: 21vw;
+    height: 10vw;
+    line-height: 10vw;
+    color: white;
+    background: url(../img/button.svg);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-style: hidden;
+    margin: 2vw 1vw;
+    cursor: var(--cursor-pointer);
+    font-size: 3vw;
+    text-shadow: 1px 1px 2px black;
 }
 
 button:active {
-  transform: scale(.90);
+    transform: scale(0.9);
 }
 
 .small-button {
-  width: 10vw;
-  height: 5vw;
-  line-height: 5vw;
-  font-size: 2vw;
-  padding: 0;
+    width: 10vw;
+    height: 5vw;
+    line-height: 5vw;
+    font-size: 2vw;
+    padding: 0;
 }
 
 button:disabled {
-  cursor: var(--cursor-wait);
-  opacity: 0.6;
+    cursor: var(--cursor-wait);
+    opacity: 0.6;
 }
 
 input {
-  text-align: center;
-  font-size: 5vw;
-  line-height: 5vw;
-  color: white;
-  width: 70vw;
-  border-color: #502D06;
-  border-width: 0 0 4px 0;
-  border-style: solid;
-  border-radius: 16px;
-  background-color: rgba(0,0,0,0.1);
+    text-align: center;
+    font-size: 5vw;
+    line-height: 5vw;
+    color: white;
+    width: 70vw;
+    border-color: #502d06;
+    border-width: 0 0 4px 0;
+    border-style: solid;
+    border-radius: 16px;
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 #w-help {
-  font-size: 3vw;
-  text-align: center;
+    font-size: 3vw;
+    text-align: center;
 }
 
 .titolo {
-  text-align: center;
-  color: white;
-  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+    text-align: center;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
 }
 
 #tombolone {
-  padding: 5px;
-  color: white;
-  box-shadow: 5px 5px 15px rgba(0,0,0,0.7);
-  background: url(../img/bg_card.svg);
-  border-radius: 12px;
-  border-collapse: separate;
-  border-spacing: 0.5vw;
-  margin: 15px 0 0 15px;
+    padding: 5px;
+    color: white;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.7);
+    background: url(../img/bg_card.svg);
+    border-radius: 12px;
+    border-collapse: separate;
+    border-spacing: 0.5vw;
+    margin: 15px 0 0 15px;
 }
 
 #client_nome {
-  font-size: 1.5rem;
-  color: white;
-  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
-  border-style: hidden;
-  height: 100px;
+    font-size: 1.5rem;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+    border-style: hidden;
+    height: 100px;
 }
 
 #client_cartella {
-  display: inline-block;
-  float: left;
-  margin: 15px 0 0 15px;
+    display: inline-block;
+    float: left;
+    margin: 15px 0 0 15px;
 }
 
 #client_cartella table {
-  border-spacing: 10px 18px;
-  box-shadow: 5px 5px 15px rgba(0,0,0,0.7);
-  background: url(../img/bg_card.svg);
+    border-spacing: 10px 18px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.7);
+    background: url(../img/bg_card.svg);
 }
 
 table.cartella {
-  color: white;
-  text-align: center;
-  border-style: hidden;
-  border-spacing: 0.6vw;
-  border-radius: 12px;
-  border-collapse: separate;
+    color: white;
+    text-align: center;
+    border-style: hidden;
+    border-spacing: 0.6vw;
+    border-radius: 12px;
+    border-collapse: separate;
 }
 
 table.cartella td {
-  width: 4vw;
-  height: 4vw;
-  font-size: 2vw;
-  text-align:  center;
-  vertical-align: middle;
-  color: white;
-  border-radius: 50%;
-  border: 1px solid #fff;
+    width: 4vw;
+    height: 4vw;
+    font-size: 2vw;
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+    border-radius: 50%;
+    border: 1px solid #fff;
 }
 
 table.cartella td.estratto {
-  box-shadow: 0 3px 6px 0 rgba(0,0,0,0.5), 0 3px 6px 0 rgba(0,0,0,0.4);
-  color: #7F3618;
-  background: url(../img/bg_number.png);
-  border-style: hidden;
+    box-shadow:
+        0 3px 6px 0 rgba(0, 0, 0, 0.5),
+        0 3px 6px 0 rgba(0, 0, 0, 0.4);
+    color: #7f3618;
+    background: url(../img/bg_number.png);
+    border-style: hidden;
 }
 
 div#ultimi {
-  display: inline-block;
+    display: inline-block;
 }
 
 div#ultimi div {
-  width: 7vw;
-  height: 7vw;
-  line-height: 7vw;
-  font-size: 4vw;
-  margin: 0 0.5vw;
-  text-align: center;
-  vertical-align: middle;
-  box-shadow: 0 3px 6px 0 rgba(0,0,0,0.5), 0 3px 6px 0 rgba(0,0,0,0.4);
-  color: #7F3618;
-  background: url(../img/bg_number.png);
-  border-style: hidden;
-  border-radius: 50%;
-  display: inline-block;
+    width: 7vw;
+    height: 7vw;
+    line-height: 7vw;
+    font-size: 4vw;
+    margin: 0 0.5vw;
+    text-align: center;
+    vertical-align: middle;
+    box-shadow:
+        0 3px 6px 0 rgba(0, 0, 0, 0.5),
+        0 3px 6px 0 rgba(0, 0, 0, 0.4);
+    color: #7f3618;
+    background: url(../img/bg_number.png);
+    border-style: hidden;
+    border-radius: 50%;
+    display: inline-block;
 }
 
 div#ultimi div:first-child {
-  width: 10vw;
-  height: 10vw;
-  line-height: 10vw;
-  font-size: 7vw;
-  box-shadow: 0 3px 6px 0 rgba(0,0,0,0.5), 0 3px 6px 0 rgba(0,0,0,0.4);
-  border-radius: 50%;
+    width: 10vw;
+    height: 10vw;
+    line-height: 10vw;
+    font-size: 7vw;
+    box-shadow:
+        0 3px 6px 0 rgba(0, 0, 0, 0.5),
+        0 3px 6px 0 rgba(0, 0, 0, 0.4);
+    border-radius: 50%;
 }
 
 div#ultimi div:empty {
-  display: none;
+    display: none;
 }
 
 #utenti {
-  font-size: 3vw;
+    font-size: 3vw;
 }
 
 #utenti div {
-  display: inline-block;
+    display: inline-block;
 }
 
 #utenti div div:first-child {
-  color: white;
-  font-size: 4vw;
-  display: block;
-  margin: 20px 20px 0 20px;
+    color: white;
+    font-size: 4vw;
+    display: block;
+    margin: 20px 20px 0 20px;
 }
 
 #pin-title {
-  font-size: 5vw;
-  line-height: 6vw;
+    font-size: 5vw;
+    line-height: 6vw;
 }
 
 #pin-code {
-  font-size: 12vw;
-  margin-top: -12px;
-  background-color: rgba(0,0,0,0.1);
-  line-height: 12vw;
+    font-size: 12vw;
+    margin-top: -12px;
+    background-color: rgba(0, 0, 0, 0.1);
+    line-height: 12vw;
 }
 
 table#informazioni {
-  font-size: 3vw;
-  margin-top: 20px;
-  border-spacing: 10px;
-  border-collapse: separate;
+    font-size: 3vw;
+    margin-top: 20px;
+    border-spacing: 10px;
+    border-collapse: separate;
 }
 
 table#informazioni td:first-child {
-  color: white;
-  text-align: right;
+    color: white;
+    text-align: right;
 }
 
 .premio {
-  color: white;
-  width: 60%;
+    color: white;
+    width: 60%;
 }
 
 table#vincitori {
-  font-size: 2.5vw;
-  margin-top: 20px;
+    font-size: 2.5vw;
+    margin-top: 20px;
 }
 
 table#vincitori td {
-  padding: 1vw 2vw 0 0;
+    padding: 1vw 2vw 0 0;
 }
 
 .privato {
-  color: #5F1600;
+    color: #5f1600;
 }
 
 table#stats {
-  display: inline-block;
-  width: 100%;
+    display: inline-block;
+    width: 100%;
 }
 
 table#stats td {
-  font-size: 1.6rem;
+    font-size: 1.6rem;
 }
 
 table#stats td:first-child {
-  width: 100%;
-  text-align: left;
-  padding-left: 5vw;
+    width: 100%;
+    text-align: left;
+    padding-left: 5vw;
 }
 
 table#stats td:last-child {
-  text-align: center;
-  padding-right: 5vw;
+    text-align: center;
+    padding-right: 5vw;
 }
 
 table#stats tr:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 footer {
-  text-align: center;
-  display: inline-block;
-  width: 100%;
-  font-size: 3vw;
-  margin-top: 50px;
-  background-color: rgba(0,0,0,0.1);
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+    font-size: 3vw;
+    margin-top: 50px;
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 footer a {
-  display: inline-block;
-  line-height: 6vw;
-  width: 48%;
-  padding: 0;
+    display: inline-block;
+    line-height: 6vw;
+    width: 48%;
+    padding: 0;
 }
 
-::-webkit-input-placeholder { color: #fff; }
-::-moz-placeholder { color: #fff; }
-:-ms-input-placeholder { color: #fff; }
-:-moz-placeholder { color: #fff; }
+::-webkit-input-placeholder {
+    color: #fff;
+}
+::-moz-placeholder {
+    color: #fff;
+}
+:-ms-input-placeholder {
+    color: #fff;
+}
+:-moz-placeholder {
+    color: #fff;
+}
 
 @media only screen and (max-width: 600px) {
-  body, html {
-    font-size: 1.2rem;
-  }
+    body,
+    html {
+        font-size: 1.2rem;
+    }
 
-  #logo {
-    width: 90vw;
-  }
+    #logo {
+        width: 90vw;
+    }
 
-  #box {
-    width: 80vw;
-  }
+    #box {
+        width: 80vw;
+    }
 
-  button {
-    width: 36vw;
-    height: 18vw;
-    line-height: 18vw;
-    font-size: 5vw;
-  }
+    button {
+        width: 36vw;
+        height: 18vw;
+        line-height: 18vw;
+        font-size: 5vw;
+    }
 
-  .small-button {
-    width: 20vw;
-    height: 10vw;
-    line-height: 10vw;
-    font-size: 4vw;
-  }
+    .small-button {
+        width: 20vw;
+        height: 10vw;
+        line-height: 10vw;
+        font-size: 4vw;
+    }
 
-  input {
-    width: 86vw;
-    font-size: 10vw;
-    line-height: 10vw;
-  }
+    input {
+        width: 86vw;
+        font-size: 10vw;
+        line-height: 10vw;
+    }
 
-  #w-help {
-    font-size: 5vw;
-  }
+    #w-help {
+        font-size: 5vw;
+    }
 
-  #pin-title {
-    font-size: 8vw;
-    line-height: 11vw;
-  }
+    #pin-title {
+        font-size: 8vw;
+        line-height: 11vw;
+    }
 
-  #pin-code {
-    font-size: 16vw;
-    line-height: 18vw;
-  }
+    #pin-code {
+        font-size: 16vw;
+        line-height: 18vw;
+    }
 
-  table#informazioni {
-    font-size: 6vw;
-  }
+    table#informazioni {
+        font-size: 6vw;
+    }
 
-  #utenti {
-    font-size: 5vw;
-  }
+    #utenti {
+        font-size: 5vw;
+    }
 
-  #utenti div div:first-child {
-    font-size: 6vw;
-  }
+    #utenti div div:first-child {
+        font-size: 6vw;
+    }
 
-  #client_cartella {
-    float: none;
-    margin: 0;
-  }
+    #client_cartella {
+        float: none;
+        margin: 0;
+    }
 
-  #client_cartella table {
-    border-spacing: 1vw 3vw;
-  }
+    #client_cartella table {
+        border-spacing: 1vw 3vw;
+    }
 
-  #tombolone {
-    margin: 10px 0;
-  }
+    #tombolone {
+        margin: 10px 0;
+    }
 
-  table.cartella td {
-    width: 9vw;
-    height: 9vw;
-    font-size: 5vw;
-  }
+    table.cartella td {
+        width: 9vw;
+        height: 9vw;
+        font-size: 5vw;
+    }
 
-  table#vincitori {
-    font-size: 6vw;
-  }
+    table#vincitori {
+        font-size: 6vw;
+    }
 
-  div#ultimi div {
-    width: 14vw;
-    height: 14vw;
-    line-height: 14vw;
-    font-size: 9vw;
-  }
+    div#ultimi div {
+        width: 14vw;
+        height: 14vw;
+        line-height: 14vw;
+        font-size: 9vw;
+    }
 
-  div#ultimi div:first-child {
-    width: 20vw;
-    height: 20vw;
-    line-height: 20vw;
-    font-size: 14vw;
-    box-shadow: 0 3px 6px 0 rgba(0,0,0,0.5), 0 3px 6px 0 rgba(0,0,0,0.4);
-    border-radius: 50%;
-  }
+    div#ultimi div:first-child {
+        width: 20vw;
+        height: 20vw;
+        line-height: 20vw;
+        font-size: 14vw;
+        box-shadow:
+            0 3px 6px 0 rgba(0, 0, 0, 0.5),
+            0 3px 6px 0 rgba(0, 0, 0, 0.4);
+        border-radius: 50%;
+    }
 
-  table#stats td {
-    font-size: 1rem;
-  }
+    table#stats td {
+        font-size: 1rem;
+    }
 
-  a {
-    font-size: 10vw;
-  }
+    a {
+        font-size: 10vw;
+    }
 
-  footer {
-    text-align: center;
-    display: block;
-    line-height: inherit;
-    padding: 10px 0;
-  }
+    footer {
+        text-align: center;
+        display: block;
+        line-height: inherit;
+        padding: 10px 0;
+    }
 
-  footer a {
-    display: block;
-    font-size: 6vw;
-    margin: 8px 0;
-    width: 100%;
-  }
+    footer a {
+        display: block;
+        font-size: 6vw;
+        margin: 8px 0;
+        width: 100%;
+    }
 }
