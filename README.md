@@ -40,5 +40,15 @@ Se vuoi installare la tombola sul tuo server, devi:
 4.  Sei incoraggiato ad apportare modifiche e implementare nuove funzioni (nel rispetto della [licenza](https://github.com/padvincenzo/tombola/blob/main/LICENSE))
 5.  Menziona la [pagina principale del progetto](https://github.com/padvincenzo/tombola) e, se vuoi, puoi proporre il tuo server, che aggiungerò alla tabella dei server disponibili.
 
+### Sviluppo locale con Docker
+Con [Docker](https://www.docker.com/) puoi avviare la tombola sul tuo pc, con PHP 8.2 e MariaDB, senza installare altro:
+```
+docker compose up -d
+```
+*   Il gioco è su http://localhost:8080 (password di amministratore: ``admin``);
+*   Adminer, per consultare il database, è su http://localhost:8081 (server ``db``, utente e password ``tombola``);
+*   Il database viene creato al primo avvio: non serve aprire ``install.php``, che in locale cancellerebbe il proprio file dal repository;
+*   ``docker compose down -v`` ferma tutto e cancella il database.
+
 ## Altri dettagli
 Trovi [qui](docs/README.md) ulteriori dettagli.

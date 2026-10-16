@@ -22,19 +22,26 @@
 
 session_start();
 
-// Legge un file .env (righe CHIAVE=valore, # per i commenti).
-// Restituisce null se il file non esiste.
+// Legge la configurazione da un file .env (righe CHIAVE=valore, # per i commenti).
+// Le variabili d'ambiente già impostate (es. da Docker) hanno la precedenza.
+// Restituisce null se mancano sia il file sia le variabili d'ambiente.
 function load_env($path) {
-  if(!is_readable($path)) return null;
   $env = array();
-  foreach(file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
-    $line = trim($line);
-    if($line === "" || $line[0] === "#" || strpos($line, "=") === false) continue;
-    list($key, $value) = array_map("trim", explode("=", $line, 2));
-    if(strlen($value) >= 2 && ($value[0] === '"' || $value[0] === "'") && substr($value, -1) === $value[0]) {
-      $value = substr($value, 1, -1);
+  if(is_readable($path)) {
+    foreach(file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
+      $line = trim($line);
+      if($line === "" || $line[0] === "#" || strpos($line, "=") === false) continue;
+      list($key, $value) = array_map("trim", explode("=", $line, 2));
+      if(strlen($value) >= 2 && ($value[0] === '"' || $value[0] === "'") && substr($value, -1) === $value[0]) {
+        $value = substr($value, 1, -1);
+      }
+      $env[$key] = $value;
     }
-    $env[$key] = $value;
+  } else if(getenv("DB_HOST") === false) {
+    return null;
+  }
+  foreach(array("DB_HOST", "DB_USER", "DB_PASSWORD", "DB_NAME", "ADMIN_PASSWORD") as $key) {
+    if(getenv($key) !== false) $env[$key] = getenv($key);
   }
   return $env;
 }
