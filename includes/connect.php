@@ -65,8 +65,17 @@ if(!$dbh) {
 if(isset($_SESSION["idserver"])) $idserver = (int) $_SESSION["idserver"];
 if(isset($_SESSION["idutente"])) $idutente = (int) $_SESSION["idutente"];
 
-/* Cancella le partite abbandonate */
-mysqli_query($dbh, "update ".PREFIX."server set offlimits = 1 where offlimits is false and datediff(now(), data) > 2;");
+/* Cancella le partite abbandonate (non durante l'installazione, quando le tabelle possono mancare) */
+if(!defined("SETUP")) {
+  try {
+    mysqli_query($dbh, "update ".PREFIX."server set offlimits = 1 where offlimits is false and datediff(now(), data) > 2;");
+  } catch(mysqli_sql_exception $e) {
+    if($e->getCode() == 1146) {   // Tabella inesistente
+      die("Il database non è ancora installato: apri la pagina setup/ per installarlo.");
+    }
+    throw $e;
+  }
+}
 
 function redirect($link) {
   header("Location: $link");

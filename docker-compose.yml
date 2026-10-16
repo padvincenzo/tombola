@@ -6,6 +6,8 @@
 services:
   web:
     build: ./docker/php
+    # Installa o aggiorna il database a ogni avvio, poi avvia Apache
+    command: sh -c "php setup/migrate.php && exec apache2-foreground"
     ports:
       - "9090:80"
     volumes:
@@ -29,8 +31,6 @@ services:
       MARIADB_ROOT_PASSWORD: root
     volumes:
       - db-data:/var/lib/mysql
-      # Al primo avvio crea le tabelle, come farebbe install.php
-      - ./setup/initial_db.sql:/docker-entrypoint-initdb.d/initial_db.sql:ro
     healthcheck:
       test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
       interval: 5s

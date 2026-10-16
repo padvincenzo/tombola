@@ -18,17 +18,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-drop table if exists tombola_k_vincere;
-drop table if exists tombola_k_premio;
-drop table if exists tombola_k_estrarre;
-drop table if exists tombola_k_avere;
-drop table if exists tombola_k_comporre;
-drop table if exists tombola_k_numero;
-drop table if exists tombola_k_cartella;
-drop table if exists tombola_k_utente;
-drop table if exists tombola_k_server;
-
-create table tombola_k_server (
+create table {prefix}server (
   idserver int auto_increment not null primary key,
   pin char(6) not null,
   data datetime not null,
@@ -37,55 +27,55 @@ create table tombola_k_server (
   offlimits boolean null
 );
 
-create table tombola_k_utente (
+create table {prefix}utente (
   idutente int auto_increment not null primary key,
-  idserver int not null references tombola_k_server(idserver),
+  idserver int not null references {prefix}server(idserver),
   nick varchar(30) not null,
   uscito boolean null,
   privato boolean null
 );
 
-create table tombola_k_cartella (
+create table {prefix}cartella (
   idcartella int auto_increment not null primary key
 );
 
-create table tombola_k_numero (
+create table {prefix}numero (
   idnumero int not null primary key,
   cartella char(1) not null,
   riga char(1) not null
 );
 
-create table tombola_k_comporre (
+create table {prefix}comporre (
   idcomporre int auto_increment not null primary key,
-  idcartella int not null references tombola_k_cartella(idcartella),
-  idnumero int not null references tombola_k_numero(idnumero),
+  idcartella int not null references {prefix}cartella(idcartella),
+  idnumero int not null references {prefix}numero(idnumero),
   riga char(1) not null
 );
 
-create table tombola_k_avere (
+create table {prefix}avere (
   idavere int auto_increment not null primary key,
-  idutente int not null references tombola_k_utente(idutente),
-  idcartella int not null references tombola_k_cartella(idcartella)
+  idutente int not null references {prefix}utente(idutente),
+  idcartella int not null references {prefix}cartella(idcartella)
 );
 
-create table tombola_k_estrarre (
+create table {prefix}estrarre (
   idestrarre int auto_increment not null primary key,
-  idserver int not null references tombola_k_server(idserver),
-  idnumero int not null references tombola_k_numero(idnumero)
+  idserver int not null references {prefix}server(idserver),
+  idnumero int not null references {prefix}numero(idnumero)
 );
 
-create table tombola_k_premio (
+create table {prefix}premio (
   idpremio int auto_increment not null primary key,
   testo varchar(10) not null
 );
 
-create table tombola_k_vincere (
+create table {prefix}vincere (
   idvincere int auto_increment not null primary key,
-  idutente int not null references tombola_k_utente(idutente),
-  idpremio int not null references tombola_k_premio(idpremio)
+  idutente int not null references {prefix}utente(idutente),
+  idpremio int not null references {prefix}premio(idpremio)
 );
 
-insert into tombola_k_premio
+insert into {prefix}premio
   (testo)
  values
   ('Ambo'),
@@ -94,7 +84,7 @@ insert into tombola_k_premio
   ('Cinquina'),
   ('Tombola');
 
-insert into tombola_k_numero
+insert into {prefix}numero
   (idnumero, cartella, riga)
 values
   ( 1, '1', '1'), ( 2, '1', '1'), ( 3, '1', '1'), ( 4, '1', '1'), ( 5, '1', '1'),
@@ -116,7 +106,7 @@ values
   (81, '6', '2'), (82, '6', '2'), (83, '6', '2'), (84, '6', '2'), (85, '6', '2'),
   (86, '6', '3'), (87, '6', '3'), (88, '6', '3'), (89, '6', '3'), (90, '6', '3');
 
-insert into tombola_k_cartella
+insert into {prefix}cartella
   (idcartella)
  values
   ( 1), ( 2), ( 3), ( 4), ( 5), ( 6),
@@ -128,7 +118,7 @@ insert into tombola_k_cartella
   (37), (38), (39), (40), (41), (42),
   (43), (44), (45), (46), (47), (48);
 
-insert into tombola_k_comporre
+insert into {prefix}comporre
   (idcartella, idnumero, riga)
  values
   ( 1, 22, '1'), ( 1, 52, '1'), ( 1, 64, '1'), ( 1, 71, '1'), ( 1, 81, '1'),
