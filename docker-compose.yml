@@ -43,5 +43,21 @@ services:
     depends_on:
       - db
 
+  # Strumenti di formattazione, non partono con "up":
+  #   docker compose run --rm php-tools php-cs-fixer fix    corregge il PHP (PSR-12)
+  #   docker compose run --rm php-tools phpcs               segnala ciò che resta da sistemare
+  #   docker compose run --rm prettier --write assets       formatta JS e CSS
+  php-tools:
+    build: ./docker/tools
+    profiles: ["tools"]
+    volumes:
+      - .:/app
+
+  prettier:
+    build: ./docker/prettier
+    profiles: ["tools"]
+    volumes:
+      - .:/app
+
 volumes:
   db-data:

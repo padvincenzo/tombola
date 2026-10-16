@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!-- Controllo PSR-12 con PHP_CodeSniffer: il comando è in docker-compose.yml -->
+<ruleset name="Tombola">
+    <file>.</file>
+    <exclude-pattern>/.git/*</exclude-pattern>
+    <exclude-pattern>/docker/*</exclude-pattern>
+    <arg name="extensions" value="php"/>
+    <arg name="colors"/>
+    <arg value="sp"/>
+    <rule ref="PSR12"/>
+</ruleset>
