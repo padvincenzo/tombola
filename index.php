@@ -4,7 +4,7 @@
  * Tombola
  * Il classico gioco natalizio online.
  *
- * Copyright (C) 2025 Vincenzo Padula <padvincenzo@gmail.com>
+ * Copyright (C) 2025-2026 Vincenzo Padula <padvincenzo@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,6 +18,12 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @package   Tombola
+ * @author    Vincenzo Padula <padvincenzo@gmail.com>
+ * @copyright 2025-2026 Vincenzo Padula
+ * @license   https://www.gnu.org/licenses/gpl-3.0.html GPL-3.0-or-later
+ * @link      https://github.com/padvincenzo/tombola
  */
 
 $title = "Home";
